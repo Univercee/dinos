@@ -18,7 +18,7 @@ const fs = require("fs");
     console.log("Pushing to gh-pages...");
     await execa("git", ["push", "origin", "HEAD:gh-pages", "--force"]);
     await rimraf("./"+folderName, ()=>{console.log(folderName + " folder successfully deleted");});
-    await execa("git", ["checkout", "-f", "main"]);
+    await execa("git", ["checkout", "-f", "master"]);
     await execa("git", ["branch", "-D", "gh-pages"]);
     console.log("Successfully deployed to "+hostName);
   } catch (e) {
