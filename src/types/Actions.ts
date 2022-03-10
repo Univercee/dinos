@@ -2,7 +2,8 @@ enum Actions {
     Idle,
     Walk,
     Run,
-    Cry
+    Cry,
+    Jump
 }
 
 export default Actions

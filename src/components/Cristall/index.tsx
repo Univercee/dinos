@@ -16,7 +16,7 @@ let sprite_set_data: SpriteSetData = {
 }
 const data: ObjectState = {
     name: "Cristall",
-    frame_width: 100,
+    frame_width: 50,
     action: Actions.Idle,
     sprite_set: new SpriteSet(sprite_set_data),
     direction: {x: 0, y: 0},
@@ -25,6 +25,7 @@ const data: ObjectState = {
     run_speed: {x: 0, y: 0},
     moment_speed: {x: 0, y: 0},
     flip: 1,
+    jump_time: 0
 }
 
 class Cristall extends GameObject{

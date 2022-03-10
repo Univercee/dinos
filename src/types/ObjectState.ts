@@ -11,7 +11,8 @@ interface ObjectState{
     speed: {x: number, y: number}
     moment_speed: {x: number, y: number} 
     run_speed: {x: number, y: number};
-    flip: 1|-1
+    flip: 1|-1,
+    jump_time: number
 }
 
 export default ObjectState

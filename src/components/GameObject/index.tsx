@@ -8,6 +8,8 @@ abstract class GameObject extends React.Component<{}, ObjectState>
     protected id: number;
     protected temp_state: ObjectState
     protected overlapListeners: Map<number, GameObject>
+    protected jump_start: number
+    protected time: number
     abstract onKeyDown(): void
     abstract onOverlap(obj: GameObject): void
     constructor(data: ObjectState){
@@ -16,6 +18,8 @@ abstract class GameObject extends React.Component<{}, ObjectState>
         this.state = data
         this.temp_state = data
         this.overlapListeners = new Map()
+        this.jump_start = -1
+        this.time = 0
     }
     getId(){
         return this.id
@@ -37,14 +41,14 @@ abstract class GameObject extends React.Component<{}, ObjectState>
     tick(){
         this.state.sprite_set.tick();
         this.onKeyDown()
-        
         this.overlapListeners.forEach((obj)=>{
             if(this.overlap(obj))this.onOverlap(obj)
         }, this)
         this.updateState()
         this.updatePosition()  
         this.setState(this.temp_state)  
-        this.temp_state = this.state    
+        this.temp_state = this.state   
+        this.time++ 
     }
 
     setSpriteSet(sprite_set: SpriteSet){
@@ -61,6 +65,10 @@ abstract class GameObject extends React.Component<{}, ObjectState>
     }
     removeOverlapListener(obj: GameObject){
         this.overlapListeners.delete(obj.getId())
+    }
+    is_jump(){
+        let time = this.time-this.jump_start
+        return time <= this.temp_state.jump_time ? time : 0
     }
     private updatePosition(){
         this.temp_state.position.x += this.temp_state.moment_speed.x * this.temp_state.direction.x
@@ -79,6 +87,11 @@ abstract class GameObject extends React.Component<{}, ObjectState>
                 break
             case Actions.Cry:
                 this.temp_state.moment_speed = {x: 0, y: 0}
+                break
+            case Actions.Jump:
+                this.temp_state.moment_speed.y = this.temp_state.speed.y * (this.is_jump()-this.temp_state.jump_time/2)
+                console.log(this.is_jump());
+                
                 break
         }
     }

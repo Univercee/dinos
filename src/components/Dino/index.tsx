@@ -12,7 +12,8 @@ const red_dino_sprite_data: SpriteSetData = {
     src: red_dino_image,
     sprite_breakpoints: new Map<Actions, Array<number>>([
         [Actions.Idle, [0, 4]], 
-        [Actions.Walk, [4, 10]], 
+        [Actions.Walk, [4, 10]],
+        [Actions.Jump, [11, 11]], 
         [Actions.Cry, [14, 17]], 
         [Actions.Run, [18, 24]]
     ]),
@@ -24,22 +25,24 @@ const blue_dino_sprite_data: SpriteSetData = {
     sprite_breakpoints: new Map<Actions, Array<number>>([
         [Actions.Idle, [0, 4]], 
         [Actions.Walk, [4, 10]], 
-        [Actions.Cry, [14, 17]], 
+        [Actions.Jump, [11, 11]], 
+        [Actions.Cry, [14, 17]],
         [Actions.Run, [18, 24]]
     ]),
     length: 24
 }
 const data: ObjectState = {
     name: "Dino",
-    frame_width: 100,
+    frame_width: 50,
     action: Actions.Idle,
     sprite_set: new SpriteSet(red_dino_sprite_data),
     direction: {x: 0, y: 0},
     position: {x: 0, y: 0},
-    speed: {x: 4, y: 0},
+    speed: {x: 4, y: 4},
     run_speed: {x: 8, y: 0},
     moment_speed: {x: 0, y: 0},
     flip: 1,
+    jump_time: 10
 }
 
 class Dino extends GameObject{
@@ -52,12 +55,35 @@ class Dino extends GameObject{
     }
     onKeyDown(){
         let keys = (window as any).keys
+        if(this.temp_state.action === Actions.Jump){
+            if(this.is_jump()){
+                return
+            }
+        }
         if(keys.a && !keys.d){
             this.temp_state.flip = -1
             this.temp_state.direction = {x:-1, y:0}
             this.temp_state.action = Actions.Walk
             if(keys.shift){
                 this.temp_state.action = Actions.Run
+            }
+            if(keys[' ']){
+                this.temp_state.direction = {x:-1, y:-1}
+                this.temp_state.action = Actions.Jump
+                this.jump_start = this.time
+            }
+        }
+        else if(keys.d && !keys.a){
+            this.temp_state.flip = 1
+            this.temp_state.direction = {x:1, y:0}
+            this.temp_state.action = Actions.Walk
+            if(keys.shift){
+                this.temp_state.action = Actions.Run
+            }
+            if(keys[' ']){
+                this.temp_state.direction = {x:1, y:-1}
+                this.temp_state.action = Actions.Jump
+                this.jump_start = this.time
             }
         }
         else if(keys.d && !keys.a){
@@ -68,6 +94,12 @@ class Dino extends GameObject{
                 this.temp_state.action = Actions.Run
             }
         }
+        else if(keys[' ']){
+            this.temp_state.flip = 1
+            this.temp_state.direction = {x:0, y:-1}
+            this.temp_state.action = Actions.Jump
+            this.jump_start = this.time
+        }
         else{
             this.temp_state.direction = {x:0, y:0};
             this.temp_state.action = Actions.Idle
@@ -76,8 +108,6 @@ class Dino extends GameObject{
     }
     onOverlap(obj: GameObject): void {
         let keys = (window as any).keys
-        console.log(obj.constructor.name);
-        
         switch(obj.constructor.name){
             case "Cristall":
             if(keys.e){
