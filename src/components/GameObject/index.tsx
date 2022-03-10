@@ -3,21 +3,25 @@ import Actions from '../../types/Actions';
 import SpriteSet from '../SpriteSet';
 import ObjectState from '../../types/ObjectState';
 
-class GameObject extends React.Component<{} ,ObjectState>
+abstract class GameObject extends React.Component<{}, ObjectState>
 {
-    private id: number;
-    private temp_state: ObjectState
-
+    protected id: number;
+    protected temp_state: ObjectState
+    protected overlapListeners: Map<number, GameObject>
+    abstract onKeyDown(): void
+    abstract onOverlap(obj: GameObject): void
     constructor(data: ObjectState){
         super({})
         this.id = Date.now()
         this.state = data
         this.temp_state = data
+        this.overlapListeners = new Map()
     }
-
+    getId(){
+        return this.id
+    }
     render(){
         let coords = this.state.sprite_set.getIndex() * this.state.frame_width
-        
         return <div 
         className="sprite" 
         style={{bottom: this.state.position.y, left: this.state.position.x, width: this.state.frame_width+"px", overflow: "hidden", transform: "scaleX("+this.state.flip+")"}}
@@ -32,7 +36,11 @@ class GameObject extends React.Component<{} ,ObjectState>
     }
     tick(){
         this.state.sprite_set.tick();
-        this.temp_state = this.state.onKeyDown(this.state)
+        this.onKeyDown()
+        
+        this.overlapListeners.forEach((obj)=>{
+            if(this.overlap(obj))this.onOverlap(obj)
+        }, this)
         this.updateState()
         this.updatePosition()  
         this.setState(this.temp_state)  
@@ -41,6 +49,18 @@ class GameObject extends React.Component<{} ,ObjectState>
 
     setSpriteSet(sprite_set: SpriteSet){
         this.temp_state.sprite_set = sprite_set
+    }
+    overlap(obj: GameObject){
+        let x = this.state.position.x + this.state.frame_width/2
+        let min = obj.state.position.x - this.state.frame_width/2
+        let max = min + obj.state.frame_width + this.state.frame_width
+        return ((x-min)*(x-max) <= 0)
+    }
+    addOverlapListener(obj: GameObject){
+        this.overlapListeners.set(obj.getId(), obj)
+    }
+    removeOverlapListener(obj: GameObject){
+        this.overlapListeners.delete(obj.getId())
     }
     private updatePosition(){
         this.temp_state.position.x += this.temp_state.moment_speed.x * this.temp_state.direction.x

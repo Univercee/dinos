@@ -1,12 +1,24 @@
 import GameObject from '../GameObject'
 import SpriteSet from '../SpriteSet'
 import SpriteSetData from '../../types/SpriteSetData'
-import blue_dino_image from '../../sprites/BlueDido.png'
 import Actions from '../../types/Actions'
 import ObjectState from '../../types/ObjectState'
-import KeyHundler from '../../types/KeyHundler'
 
-let sprite_set_data: SpriteSetData = {
+import blue_dino_image from '../../sprites/BlueDino.png'
+import red_dino_image from '../../sprites/RedDino.png'
+
+const red_dino_sprite_data: SpriteSetData = {
+    name: "RedDino",
+    src: red_dino_image,
+    sprite_breakpoints: new Map<Actions, Array<number>>([
+        [Actions.Idle, [0, 4]], 
+        [Actions.Walk, [4, 10]], 
+        [Actions.Cry, [14, 17]], 
+        [Actions.Run, [18, 24]]
+    ]),
+    length: 24
+}
+const blue_dino_sprite_data: SpriteSetData = {
     name: "BlueDino",
     src: blue_dino_image,
     sprite_breakpoints: new Map<Actions, Array<number>>([
@@ -17,51 +29,62 @@ let sprite_set_data: SpriteSetData = {
     ]),
     length: 24
 }
-let onKeyDown: KeyHundler = function(state: ObjectState)
-{
-    let keys = (window as any).keys
-    if(keys.a && !keys.d){
-        state.flip = -1
-        state.direction = {x:-1, y:0}
-        state.action = Actions.Walk
-        if(keys.shift){
-            state.action = Actions.Run
-        }
-    }
-    else if(keys.d && !keys.a){
-        state.flip = 1
-        state.direction = {x:1, y:0}
-        state.action = Actions.Walk
-        if(keys.shift){
-            state.action = Actions.Run
-        }
-    }
-    else if(!keys.d && !keys.a && keys.e){
-        state.action = Actions.Cry
-    }
-    else{
-        state.direction = {x:0, y:0};
-        state.action = Actions.Idle
-    }
-    state.sprite_set.setAction(state.action)
-    return state
-}
 const data: ObjectState = {
     name: "Dino",
     frame_width: 100,
     action: Actions.Idle,
-    sprite_set: new SpriteSet(sprite_set_data),
+    sprite_set: new SpriteSet(red_dino_sprite_data),
     direction: {x: 0, y: 0},
     position: {x: 0, y: 0},
     speed: {x: 4, y: 0},
     run_speed: {x: 8, y: 0},
     moment_speed: {x: 0, y: 0},
     flip: 1,
-    onKeyDown: onKeyDown
 }
 
+class Dino extends GameObject{
+    private SPRITE_SETS: Map<string, SpriteSet> = new Map([
+        ["blue", new SpriteSet(blue_dino_sprite_data)],
+        ["red", new SpriteSet(red_dino_sprite_data)]
+    ])
+    constructor(){
+        super(data)
+    }
+    onKeyDown(){
+        let keys = (window as any).keys
+        if(keys.a && !keys.d){
+            this.temp_state.flip = -1
+            this.temp_state.direction = {x:-1, y:0}
+            this.temp_state.action = Actions.Walk
+            if(keys.shift){
+                this.temp_state.action = Actions.Run
+            }
+        }
+        else if(keys.d && !keys.a){
+            this.temp_state.flip = 1
+            this.temp_state.direction = {x:1, y:0}
+            this.temp_state.action = Actions.Walk
+            if(keys.shift){
+                this.temp_state.action = Actions.Run
+            }
+        }
+        else{
+            this.temp_state.direction = {x:0, y:0};
+            this.temp_state.action = Actions.Idle
+        }
+        this.temp_state.sprite_set.setAction(this.temp_state.action)
+    }
+    onOverlap(obj: GameObject): void {
+        let keys = (window as any).keys
+        console.log(obj.constructor.name);
+        
+        switch(obj.constructor.name){
+            case "Cristall":
+            if(keys.e){
+                this.setSpriteSet(this.SPRITE_SETS.get("blue")!)
+            }
+        }
+    }
+}
 
-
-let dino = new GameObject(data);
-
-export default dino;
+export default Dino;

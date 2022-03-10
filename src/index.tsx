@@ -1,34 +1,20 @@
 import ReactDOM from 'react-dom';
 import './index.css';
 import Dino from './components/Dino'
+import Cristall from './components/Cristall';
+import './keyListener';
 // import reportWebVitals from './reportWebVitals';
 
 const FPS = 8;
-
-(window as any).keys = {
-  a: false,
-  d: false,
-  e: false,
-  shift: false
-}
-window.onkeydown = function(event){
-  let key = event.key.toLowerCase()
-  if(key === "a" || key === "d" || key === "shift" || key === "e"){
-      (window as any).keys[key] = true
-  }
-}
-window.onkeyup = function(event){
-  let key = event.key.toLowerCase()
-  if(key === "a" || key === "d" || key === "shift" || key === "e"){
-      (window as any).keys[key] = false
-  }
-}
-
+let dino = new Dino()
+let cristall = new Cristall()
+dino.addOverlapListener(cristall)
 function tick(){
-  Dino.tick()
+  dino.tick()
+  cristall.tick()
   ReactDOM.render(
-    Dino.render(),
-    document.getElementById('root')
+    [cristall.render(),dino.render()],
+    document.getElementById('root') 
   );
 }
 setInterval(tick, 1/FPS * 1000)

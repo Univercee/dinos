@@ -1,6 +1,5 @@
 import SpriteSet from "../components/SpriteSet"
 import Actions from "./Actions"
-import KeyHundler from "./KeyHundler"
 
 interface ObjectState{
     name: string;
@@ -13,7 +12,6 @@ interface ObjectState{
     moment_speed: {x: number, y: number} 
     run_speed: {x: number, y: number};
     flip: 1|-1
-    onKeyDown: KeyHundler
 }
 
 export default ObjectState
