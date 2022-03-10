@@ -1,13 +1,14 @@
 {
   "files": {
     "main.css": "/react_app/static/css/main.70565e95.css",
-    "main.js": "/react_app/static/js/main.5cfce41e.js",
+    "main.js": "/react_app/static/js/main.8cc0b257.js",
+    "static/media/BlueCristall.png": "/react_app/static/media/BlueCristall.b3d9a906b06e4d55f6f1.png",
     "index.html": "/react_app/index.html",
     "main.70565e95.css.map": "/react_app/static/css/main.70565e95.css.map",
-    "main.5cfce41e.js.map": "/react_app/static/js/main.5cfce41e.js.map"
+    "main.8cc0b257.js.map": "/react_app/static/js/main.8cc0b257.js.map"
   },
   "entrypoints": [
     "static/css/main.70565e95.css",
-    "static/js/main.5cfce41e.js"
+    "static/js/main.8cc0b257.js"
   ]
 }
