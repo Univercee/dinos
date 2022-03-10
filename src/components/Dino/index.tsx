@@ -110,9 +110,9 @@ class Dino extends GameObject{
         let keys = (window as any).keys
         switch(obj.constructor.name){
             case "Cristall":
-            if(keys.e){
-                this.setSpriteSet(this.SPRITE_SETS.get("blue")!)
-            }
+                if(keys.e){
+                    this.setSpriteSet(this.SPRITE_SETS.get("blue")!)
+                }
         }
     }
 }

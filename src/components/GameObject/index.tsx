@@ -44,7 +44,7 @@ abstract class GameObject extends React.Component<{}, ObjectState>
         this.overlapListeners.forEach((obj)=>{
             if(this.overlap(obj))this.onOverlap(obj)
         }, this)
-        this.updateState()
+        this.updateAction()
         this.updatePosition()  
         this.setState(this.temp_state)  
         this.temp_state = this.state   
@@ -56,9 +56,13 @@ abstract class GameObject extends React.Component<{}, ObjectState>
     }
     overlap(obj: GameObject){
         let x = this.state.position.x + this.state.frame_width/2
-        let min = obj.state.position.x - this.state.frame_width/2
-        let max = min + obj.state.frame_width + this.state.frame_width
-        return ((x-min)*(x-max) <= 0)
+        let x_min = obj.state.position.x - this.state.frame_width/2
+        let x_max = x_min + obj.state.frame_width + this.state.frame_width
+
+        let y = this.state.position.y + this.state.frame_width/2
+        let y_min = obj.state.position.y - this.state.frame_width/2
+        let y_max = y_min + obj.state.frame_width + this.state.frame_width
+        return ((x-x_min)*(x-x_max) <= 0 && (y-y_min)*(y-y_max) <= 0)
     }
     addOverlapListener(obj: GameObject){
         this.overlapListeners.set(obj.getId(), obj)
@@ -74,7 +78,7 @@ abstract class GameObject extends React.Component<{}, ObjectState>
         this.temp_state.position.x += this.temp_state.moment_speed.x * this.temp_state.direction.x
         this.temp_state.position.y += this.temp_state.moment_speed.y * this.temp_state.direction.y
     }    
-    private updateState() {
+    private updateAction() {
         switch(this.state.action){
             case Actions.Idle:
                 this.temp_state.moment_speed = {x: 0, y: 0}
@@ -90,8 +94,6 @@ abstract class GameObject extends React.Component<{}, ObjectState>
                 break
             case Actions.Jump:
                 this.temp_state.moment_speed.y = this.temp_state.speed.y * (this.is_jump()-this.temp_state.jump_time/2)
-                console.log(this.is_jump());
-                
                 break
         }
     }

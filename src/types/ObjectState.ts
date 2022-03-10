@@ -2,16 +2,16 @@ import SpriteSet from "../components/SpriteSet"
 import Actions from "./Actions"
 
 interface ObjectState{
-    name: string;
-    frame_width: number;
+    name: string
+    frame_width: number
     action: Actions
     sprite_set: SpriteSet
     direction: {x: number, y: number}
     position: {x: number, y: number}
     speed: {x: number, y: number}
     moment_speed: {x: number, y: number} 
-    run_speed: {x: number, y: number};
-    flip: 1|-1,
+    run_speed: {x: number, y: number}
+    flip: 1|-1
     jump_time: number
 }
 
