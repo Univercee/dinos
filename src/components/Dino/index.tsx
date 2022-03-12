@@ -5,6 +5,8 @@ import ObjectState from '../../types/ObjectState'
 import { blue_dino_sprite, green_dino_sprite, red_dino_sprite, yellow_dino_sprite } from '../../sprites'
 import Colors from '../../types/Colors'
 import { Cristall } from '../Cristall'
+import { input } from '../../keyListener'
+import Keys from '../../types/Keys'
 
 export const data: ObjectState = {
     name: "Dino",
@@ -37,47 +39,38 @@ export class Dino extends GameObject{
         return this.color
     }
     onKeyDown(){
-        let keys = (window as any).keys
         if(this.temp_state.action === Actions.Jump){
             if(this.is_jump()){
                 return
             }
         }
-        if(keys.a && !keys.d){
+        if(input.get(Keys.A) && !input.get(Keys.D)){
             this.temp_state.flip = -1
             this.temp_state.direction = {x:-1, y:0}
             this.temp_state.action = Actions.Walk
-            if(keys.shift){
+            if(input.get(Keys.Shift)){
                 this.temp_state.action = Actions.Run
             }
-            if(keys[' ']){
+            if(input.get(Keys.Space)){
                 this.temp_state.direction = {x:-1, y:-1}
                 this.temp_state.action = Actions.Jump
                 this.jump_start = this.time
             }
         }
-        else if(keys.d && !keys.a){
+        else if(input.get(Keys.D) && !input.get(Keys.A)){
             this.temp_state.flip = 1
             this.temp_state.direction = {x:1, y:0}
             this.temp_state.action = Actions.Walk
-            if(keys.shift){
+            if(input.get(Keys.Shift)){
                 this.temp_state.action = Actions.Run
             }
-            if(keys[' ']){
+            if(input.get(Keys.Space)){
                 this.temp_state.direction = {x:1, y:-1}
                 this.temp_state.action = Actions.Jump
                 this.jump_start = this.time
             }
         }
-        else if(keys.d && !keys.a){
-            this.temp_state.flip = 1
-            this.temp_state.direction = {x:1, y:0}
-            this.temp_state.action = Actions.Walk
-            if(keys.shift){
-                this.temp_state.action = Actions.Run
-            }
-        }
-        else if(keys[' ']){
+        else if(input.get(Keys.Space)){
             this.temp_state.flip = 1
             this.temp_state.direction = {x:0, y:-1}
             this.temp_state.action = Actions.Jump
@@ -90,10 +83,9 @@ export class Dino extends GameObject{
         this.temp_state.sprite_set.setAction(this.temp_state.action)
     }
     onOverlap(obj: GameObject): void {
-        let keys = (window as any).keys
         switch(obj.constructor.name){
             case "Cristall":
-                if(keys.e){
+                if(input.get(Keys.E)){
                     this.setSpriteSet(this.SPRITE_SETS.get((obj as Cristall).getColor())!)
                 }
         }

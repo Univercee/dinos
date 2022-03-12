@@ -3,7 +3,8 @@ enum Keys {
     D,
     E,
     Shift,
-    Space
+    Space,
+    default
 }
 
 export default Keys

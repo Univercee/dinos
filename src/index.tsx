@@ -2,7 +2,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { Dino } from './components/Dino'
 import { Cristall } from './components/Cristall';
-import './keyListener';
 import GameObjects from './GameObjects';
 import Colors from './types/Colors';
 // import reportWebVitals from './reportWebVitals';

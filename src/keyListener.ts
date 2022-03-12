@@ -1,20 +1,43 @@
-(window as any).keys = new Map([
-    ['a', false],
-    ['d', false],
-    ['e', false],
-    ['shift', false],
-    [' ', false]
+import Keys from "./types/Keys"
+
+export const input = new Map<Keys, boolean>([
+    [Keys.A, false],
+    [Keys.D, false],
+    [Keys.E, false],
+    [Keys.Shift, false],
+    [Keys.Space, false],
+    [Keys.default, false],
 ])
+
+function toKey(key: string): Keys
+{
+  switch(key){
+    case 'a':
+    case 'ф':
+      return Keys.A
+    case 'd':
+    case 'в':
+      return Keys.D
+    case 'e':
+    case 'у':
+      return Keys.E
+    case 'shift':
+      return Keys.Shift
+    case ' ':
+      return Keys.Space
+    default:
+      return Keys.default
+  }
+}
   window.onkeydown = function(event){
-    let key = event.key.toLowerCase()
-    if((window as any).keys.has(key)){
-        (window as any).keys[key] = true
+    let key = toKey(event.key.toLowerCase())
+    if(input.has(key)){
+      input.set(key, true)
     }
   }
   window.onkeyup = function(event){
-    let key = event.key.toLowerCase()
-    if((window as any).keys.has(key)){
-        (window as any).keys[key] = false
+    let key = toKey(event.key.toLowerCase())
+    if(input.has(key)){
+      input.set(key, false)
     }
   }
-export default window
