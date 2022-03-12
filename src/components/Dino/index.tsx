@@ -1,57 +1,40 @@
 import GameObject from '../GameObject'
 import SpriteSet from '../SpriteSet'
-import SpriteSetData from '../../types/SpriteSetData'
 import Actions from '../../types/Actions'
 import ObjectState from '../../types/ObjectState'
+import { blue_dino_sprite, green_dino_sprite, red_dino_sprite, yellow_dino_sprite } from '../../sprites'
+import Colors from '../../types/Colors'
+import { Cristall } from '../Cristall'
 
-import blue_dino_image from '../../sprites/BlueDino.png'
-import red_dino_image from '../../sprites/RedDino.png'
-
-const red_dino_sprite_data: SpriteSetData = {
-    name: "RedDino",
-    src: red_dino_image,
-    sprite_breakpoints: new Map<Actions, Array<number>>([
-        [Actions.Idle, [0, 4]], 
-        [Actions.Walk, [4, 10]],
-        [Actions.Jump, [11, 11]], 
-        [Actions.Cry, [14, 17]], 
-        [Actions.Run, [18, 24]]
-    ]),
-    length: 24
-}
-const blue_dino_sprite_data: SpriteSetData = {
-    name: "BlueDino",
-    src: blue_dino_image,
-    sprite_breakpoints: new Map<Actions, Array<number>>([
-        [Actions.Idle, [0, 4]], 
-        [Actions.Walk, [4, 10]], 
-        [Actions.Jump, [11, 11]], 
-        [Actions.Cry, [14, 17]],
-        [Actions.Run, [18, 24]]
-    ]),
-    length: 24
-}
-const data: ObjectState = {
+export const data: ObjectState = {
     name: "Dino",
     frame_width: 50,
     action: Actions.Idle,
-    sprite_set: new SpriteSet(red_dino_sprite_data),
+    sprite_set: new SpriteSet(blue_dino_sprite),
     direction: {x: 0, y: 0},
-    position: {x: 0, y: 0},
+    position: {x: 200, y: 0},
     speed: {x: 4, y: 4},
     run_speed: {x: 8, y: 0},
     moment_speed: {x: 0, y: 0},
     flip: 1,
-    jump_time: 10
+    jump_time: 10,
+    visability: true
 }
-
-class Dino extends GameObject{
-    private SPRITE_SETS: Map<string, SpriteSet> = new Map([
-        ["blue", new SpriteSet(blue_dino_sprite_data)],
-        ["red", new SpriteSet(red_dino_sprite_data)]
+export class Dino extends GameObject{
+    private SPRITE_SETS: Map<Colors, SpriteSet> = new Map([
+        [Colors.Blue, new SpriteSet(blue_dino_sprite)],
+        [Colors.Red, new SpriteSet(red_dino_sprite)],
+        [Colors.Green, new SpriteSet(green_dino_sprite)],
+        [Colors.Yellow, new SpriteSet(yellow_dino_sprite)],
     ])
-    constructor(){
-        super(data)
+    private color: Colors
+    constructor(color: Colors){
+        super(JSON.parse(JSON.stringify(data)))
+        this.color = color
+        this.setSpriteSet(this.SPRITE_SETS.get(color)!)
+    }
+    getColor(){
+        return this.color
     }
     onKeyDown(){
         let keys = (window as any).keys
@@ -111,10 +94,14 @@ class Dino extends GameObject{
         switch(obj.constructor.name){
             case "Cristall":
                 if(keys.e){
-                    this.setSpriteSet(this.SPRITE_SETS.get("blue")!)
+                    this.setSpriteSet(this.SPRITE_SETS.get((obj as Cristall).getColor())!)
                 }
         }
     }
+    onBeginOverlap(obj: GameObject): void {
+          
+    }
+    onEndOverlap(obj: GameObject): void {
+        
+    }
 }
-
-export default Dino;
