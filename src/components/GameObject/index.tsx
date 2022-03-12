@@ -57,7 +57,6 @@ abstract class GameObject extends React.Component<{}, ObjectState>
         className="sprite" 
         style={{display: display, bottom: this.state.position.y, left: this.state.position.x, width: this.state.frame_width+"px", overflow: "hidden", transform: "scaleX("+this.state.flip+")"}}
         key={this.getId()}
-        itemID={this.getId().toString()}
         id={this.getId().toString()}
         >
         <img 
