@@ -6,6 +6,7 @@ import { Hud } from '../HUD'
 import { blue_cristall_sprite, green_cristall_sprite, red_cristall_sprite, yellow_cristall_sprite } from '../../sprites'
 import Colors from '../../types/Colors'
 import Keys from '../../types/Keys'
+import { Dino } from '../Dino'
 
 export const data: ObjectState = {
     name: "Cristall",
@@ -37,6 +38,7 @@ export class Cristall extends GameObject{
         this.hud = new Hud(Keys.E)
         this.hud.setPosition(this.temp_state.position.x+this.temp_state.frame_width/2-this.hud.getTempState().frame_width/2, this.temp_state.position.y+5+this.temp_state.frame_width)
         this.addChild(this.hud)
+        this.name = "Cristall"
     }
     getColor(){
         return this.color
@@ -48,14 +50,14 @@ export class Cristall extends GameObject{
         
     }
     onBeginOverlap(obj: GameObject): void {
-        switch(obj.constructor.name){
-            case "Dino":
+        switch(obj.classname()){
+            case Dino.classname():
                 this.hud.setVisability(true)
         }
     }
     onEndOverlap(obj: GameObject): void {
-        switch(obj.constructor.name){
-            case "Dino":
+        switch(obj.classname()){
+            case Dino.classname():
                 this.hud.setVisability(false)
         }
     }

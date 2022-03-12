@@ -34,6 +34,7 @@ export class Dino extends GameObject{
         super(JSON.parse(JSON.stringify(data)))
         this.color = color
         this.setSpriteSet(this.SPRITE_SETS.get(color)!)
+        this.name = "Dino"
     }
     getColor(){
         return this.color
@@ -83,8 +84,8 @@ export class Dino extends GameObject{
         this.temp_state.sprite_set.setAction(this.temp_state.action)
     }
     onOverlap(obj: GameObject): void {
-        switch(obj.constructor.name){
-            case "Cristall":
+        switch(obj.classname()){
+            case Cristall.classname():
                 if(input.get(Keys.E)){
                     this.setSpriteSet(this.SPRITE_SETS.get((obj as Cristall).getColor())!)
                 }

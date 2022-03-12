@@ -32,6 +32,7 @@ export class Hud extends GameObject{
     constructor(key: Keys){
         super(JSON.parse(JSON.stringify(data)))
         this.setSpriteSet(this.SPRITE_SETS.get(key)!)
+        this.name = "Hud"
     }
     onKeyDown(): void {
         

@@ -15,6 +15,7 @@ abstract class GameObject extends React.Component<{}, ObjectState>
     protected jump_start: number = -1
     protected time: number = 0
     protected childs: Map<number, GameObject> = new Map()
+    protected name: string
     abstract onKeyDown(): void
     abstract onOverlap(obj: GameObject): void
     abstract onBeginOverlap(obj: GameObject): void
@@ -24,6 +25,13 @@ abstract class GameObject extends React.Component<{}, ObjectState>
         this.temp_state = data
         this.state = data
         GameObjects.push(this)
+        this.name = "GameObject"
+    }
+    static classname(){
+        return this.name
+    }
+    classname(){
+        return this.name
     }
     componentDidMount(){
         this.setState(this.temp_state) 
