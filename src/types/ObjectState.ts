@@ -13,7 +13,7 @@ interface ObjectState{
     run_speed: {x: number, y: number}
     flip: 1|-1
     jump_time: number
-    visability: boolean
+    visibility: boolean
 }
 
 // class ObjectState{

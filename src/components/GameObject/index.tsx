@@ -48,14 +48,13 @@ abstract class GameObject extends React.Component<{}, ObjectState>
         }, this)
     }
     setVisability(is_visible: boolean){
-        this.temp_state.visability = is_visible
+        this.temp_state.visibility = is_visible
     }
     render(){
         let coords = this.state.sprite_set.getIndex() * this.state.frame_width
-        let display = this.state.visability ? "initial" : "none"
         return <div 
         className="sprite" 
-        style={{display: display, bottom: this.state.position.y, left: this.state.position.x, width: this.state.frame_width+"px", overflow: "hidden", transform: "scaleX("+this.state.flip+")"}}
+        style={{visibility: this.state.visibility ? "visible" : "hidden", bottom: this.state.position.y, left: this.state.position.x, width: this.state.frame_width+"px", overflow: "hidden", transform: "scaleX("+this.state.flip+")"}}
         key={this.getId()}
         id={this.getId().toString()}
         >

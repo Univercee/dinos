@@ -18,7 +18,7 @@ export const data: ObjectState = {
     moment_speed: {x: 0, y: 0},
     flip: 1,
     jump_time: 0,
-    visability: false
+    visibility: false
 }
 
 export class Hud extends GameObject{

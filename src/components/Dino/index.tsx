@@ -20,7 +20,7 @@ export const data: ObjectState = {
     moment_speed: {x: 0, y: 0},
     flip: 1,
     jump_time: 10,
-    visability: true
+    visibility: true
 }
 export class Dino extends GameObject{
     private SPRITE_SETS: Map<Colors, SpriteSet> = new Map([

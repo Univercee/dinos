@@ -19,7 +19,7 @@ export const data: ObjectState = {
     moment_speed: {x: 0, y: 0},
     flip: 1,
     jump_time: 0,
-    visability: true
+    visibility: true
 }
 export class Cristall extends GameObject{
     private SPRITE_SETS: Map<Colors, SpriteSet> = new Map([
