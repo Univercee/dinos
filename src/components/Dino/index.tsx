@@ -7,6 +7,7 @@ import Colors from '../../types/Colors'
 import { Cristall } from '../Cristall'
 import { input } from '../../keyListener'
 import Keys from '../../types/Keys'
+import Classes from '../../types/Classes'
 
 export const data: ObjectState = {
     name: "Dino",
@@ -23,6 +24,7 @@ export const data: ObjectState = {
     visibility: true
 }
 export class Dino extends GameObject{
+    readonly classname: Classes = Classes.Dino
     private SPRITE_SETS: Map<Colors, SpriteSet> = new Map([
         [Colors.Blue, new SpriteSet(blue_dino_sprite)],
         [Colors.Red, new SpriteSet(red_dino_sprite)],
@@ -34,7 +36,6 @@ export class Dino extends GameObject{
         super(JSON.parse(JSON.stringify(data)))
         this.color = color
         this.setSpriteSet(this.SPRITE_SETS.get(color)!)
-        this.name = "Dino"
     }
     getColor(){
         return this.color
@@ -84,8 +85,8 @@ export class Dino extends GameObject{
         this.temp_state.sprite_set.setAction(this.temp_state.action)
     }
     onOverlap(obj: GameObject): void {
-        switch(obj.classname()){
-            case Cristall.classname():
+        switch(obj.classname){
+            case Classes.Cristall:
                 if(input.get(Keys.E)){
                     this.setSpriteSet(this.SPRITE_SETS.get((obj as Cristall).getColor())!)
                 }

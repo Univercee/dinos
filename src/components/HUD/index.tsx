@@ -4,6 +4,7 @@ import Actions from '../../types/Actions'
 import ObjectState from '../../types/ObjectState'
 import { hud_a_sprite, hud_d_sprite, hud_e_sprite, hud_shift_sprite } from '../../sprites'
 import Keys from '../../types/Keys'
+import Classes from '../../types/Classes'
 
 
 export const data: ObjectState = {
@@ -22,6 +23,7 @@ export const data: ObjectState = {
 }
 
 export class Hud extends GameObject{
+    readonly classname: Classes = Classes.Hud
     private SPRITE_SETS: Map<Keys, SpriteSet> = new Map([
         [Keys.A, new SpriteSet(hud_a_sprite)],
         [Keys.D, new SpriteSet(hud_d_sprite)],
@@ -32,7 +34,6 @@ export class Hud extends GameObject{
     constructor(key: Keys){
         super(JSON.parse(JSON.stringify(data)))
         this.setSpriteSet(this.SPRITE_SETS.get(key)!)
-        this.name = "Hud"
     }
     onKeyDown(): void {
         
