@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom';
 import './index.css';
+import './keyListener'
 import { Dino } from './components/Dino'
 import { Cristall } from './components/Cristall';
 import GameObjects from './GameObjects';

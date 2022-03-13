@@ -1,78 +1,37 @@
-import React from 'react';
 import Actions from '../../types/Actions';
-import SpriteSet from '../SpriteSet';
-import ObjectState from '../../types/ObjectState';
+import { ObjectState } from '../../interfaces/ObjectState';
 import GameObjects from '../../GameObjects';
-import Classes from '../../types/Classes';
+import { SpriteSet } from '../../interfaces/SpriteSet';
+import Keys from '../../types/Keys';
+import { input } from '../../keyListener';
+import { IJumpable } from '../../interfaces/Jumpable';
 
-var id = 0
-abstract class GameObject extends React.Component<{}, ObjectState>
+abstract class GameObject extends ObjectState implements IJumpable
 {
-    readonly classname: Classes = Classes.GameObject
-    protected id: number = id++
-    public temp_state: ObjectState
     protected overlapListeners: Map<number, GameObject> = new Map()
     protected overlap: Map<number, GameObject> = new Map()
     protected prev_overlap: Map<number, GameObject> = new Map()
-    protected jump_start: number = -1
     protected time: number = 0
-    protected childs: Map<number, GameObject> = new Map()
-    abstract onKeyDown(): void
+    protected jump_duration: number
+    protected jump_start_time: number = -1
+    abstract onKeyDown(input: Map<Keys, boolean>): void
     abstract onOverlap(obj: GameObject): void
     abstract onBeginOverlap(obj: GameObject): void
     abstract onEndOverlap(obj: GameObject): void
-    constructor(data: ObjectState){
-        super({})
-        this.temp_state = data
-        this.state = data
+    constructor(name: string, frame_width: number, sprite_set: SpriteSet, speed: {x: number, y: number}, run_speed: {x: number, y: number}, jump_duration: number = 0){
+        super(name, frame_width, sprite_set, speed, run_speed)
+        this.jump_duration = jump_duration
         GameObjects.push(this)
     }
-    componentDidMount(){
-        this.setState(this.temp_state) 
+    is_jump(){
+        let time = this.time - this.jump_start_time
+        return time <= this.jump_duration ? time : 0
     }
-    addChild(obj: GameObject){
-        this.childs.set(obj.getId(), obj)
-    }
-    removeChild(obj: GameObject){
-        this.childs.delete(obj.getId())
-    }
-    getId(){
-        return this.id
-    }
-    getTempState(){
-        return this.temp_state
-    }
-    setPosition(x: number, y: number){
-        let delta = {x:this.temp_state.position.x-x, y:this.temp_state.position.y-y}
-        this.temp_state.position = {x, y}
-        this.childs.forEach((el)=>{
-            el.setPosition(el.temp_state.position.x-delta.x, el.temp_state.position.y-delta.y)
-        }, this)
-    }
-    setVisability(is_visible: boolean){
-        this.temp_state.visibility = is_visible
-    }
-    render(){
-        let coords = this.state.sprite_set.getIndex() * this.state.frame_width
-        return <div 
-        className="sprite" 
-        style={{visibility: this.state.visibility ? "visible" : "hidden", bottom: this.state.position.y, left: this.state.position.x, width: this.state.frame_width+"px", overflow: "hidden", transform: "scaleX("+this.state.flip+")"}}
-        key={this.getId()}
-        id={this.getId().toString()}
-        >
-        <img 
-            src={this.state.sprite_set.getSrc()} 
-            alt={this.constructor.name} 
-            style={{ objectFit: "cover", margin: "0 0 0 -"+coords+"px", width: this.state.sprite_set.getLength() * this.state.frame_width+"px"}}
-        />
-        {this.childs.forEach(el => {
-            el.render()
-        })}
-        </div>
+    jump(start_time: number){
+        this.jump_start_time = start_time
     }
     tick(){
-        this.temp_state.sprite_set.tick();
-        this.onKeyDown()
+        this.getSpriteSet().tick()  
         this.overlapListeners.forEach((obj)=>{
             if(this.is_overlap(obj)){
                 if(!this.prev_overlap.has(obj.getId())){
@@ -88,23 +47,20 @@ abstract class GameObject extends React.Component<{}, ObjectState>
                 this.overlap.delete(obj.getId())
             }
         }, this)
+        this.onKeyDown(input)
         this.updateAction()
-        this.updatePosition()  
-        
-        this.time++ 
+        this.updatePosition()
         this.prev_overlap = this.overlap
-    }
-    setSpriteSet(sprite_set: SpriteSet){
-        this.temp_state.sprite_set = sprite_set
+        this.time++ 
     }
     is_overlap(obj: GameObject){
-        let x = this.temp_state.position.x + this.temp_state.frame_width/2
-        let x_min = obj.temp_state.position.x - this.temp_state.frame_width/2
-        let x_max = x_min + obj.temp_state.frame_width + this.temp_state.frame_width
+        let x = this.getPosition().x + this.getFrameWidth()/2
+        let x_min = obj.getPosition().x - this.getFrameWidth()/2
+        let x_max = x_min + obj.getFrameWidth() + this.getFrameWidth()
 
-        let y = this.temp_state.position.y + this.temp_state.frame_width/2
-        let y_min = obj.temp_state.position.y - this.temp_state.frame_width/2
-        let y_max = y_min + obj.temp_state.frame_width + this.temp_state.frame_width
+        let y = this.getPosition().y + this.getFrameWidth()/2
+        let y_min = obj.getPosition().y - this.getFrameWidth()/2
+        let y_max = y_min + obj.getFrameWidth() + this.getFrameWidth()
         return ((x-x_min)*(x-x_max) <= 0 && (y-y_min)*(y-y_max) <= 0)
     }
     addOverlapListener(obj: GameObject){
@@ -113,33 +69,37 @@ abstract class GameObject extends React.Component<{}, ObjectState>
     removeOverlapListener(obj: GameObject){
         this.overlapListeners.delete(obj.getId())
     }
-    is_jump(){
-        let time = this.time-this.jump_start
-        return time <= this.temp_state.jump_time ? time : 0
-    }
     private updatePosition(){
-        let x = this.temp_state.position.x + this.temp_state.moment_speed.x * this.temp_state.direction.x
-        let y = this.temp_state.position.y + this.temp_state.moment_speed.y * this.temp_state.direction.y
+        let x = this.getPosition().x + this.getMomentSpeed().x * this.getDirection().x
+        let y = this.getPosition().y + this.getMomentSpeed().y * this.getDirection().y
         this.setPosition(x, y)
-    }    
+    }
     private updateAction() {
-        switch(this.temp_state.action){
+        switch(this.getAction()){
             case Actions.Idle:
-                this.temp_state.moment_speed = {x: 0, y: 0}
+                this.setMomentSpeed({x: 0, y: 0})
                 break
             case Actions.Walk:
-                this.temp_state.moment_speed = {x: this.temp_state.speed.x, y: 0}
+                this.setMomentSpeed({x: this.getSpeed().x, y: 0})
                 break
             case Actions.Run:
-                this.temp_state.moment_speed = {x: this.temp_state.run_speed.x, y: 0}
+                this.setMomentSpeed({x: this.getRunSpeed().x, y: 0})
                 break
             case Actions.Cry:
-                this.temp_state.moment_speed = {x: 0, y: 0}
+                this.setMomentSpeed({x: 0, y: 0})
                 break
             case Actions.Jump:
-                this.temp_state.moment_speed.y = this.temp_state.speed.y * (this.is_jump()-this.temp_state.jump_time/2)
+                this.getMomentSpeed().y = this.getSpeed().y * (this.is_jump()-this.getJumpTime()/2)
                 break
         }
     }
+
+    //getters
+    getJumpStartTime(): number { return this.jump_start_time}
+    getJumpTime(): number { return this.jump_duration}
+
+    //setters
+    setJumpStartTime(jump_start_time: number): void {this.jump_start_time = jump_start_time}
+    setJumpTime(jump_duration: number): void {this.jump_duration = jump_duration}
 }
 export default GameObject;
