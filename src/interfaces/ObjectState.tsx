@@ -67,7 +67,7 @@ export class ObjectState extends React.Component<{}, IObjectState> implements IO
         let coords = this.sprite_set.getIndex() * this.frame_width
         return <div 
         className="sprite" 
-        style={{visibility: this.visibility ? "visible" : "hidden", bottom: this.position.y, left: this.position.x, width: this.frame_width+"px", overflow: "hidden", transform: "scaleX("+this.flip+")"}}
+        style={{visibility: this.visibility ? "visible" : "hidden", bottom: this.position.y, left: this.position.x, height: "max-content", width: this.frame_width+"px", overflow: "hidden", transform: "scaleX("+this.flip+")"}}
         key={this.id}
         id={this.id.toString()}
         >
