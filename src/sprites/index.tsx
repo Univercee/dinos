@@ -1,10 +1,13 @@
 import { SpriteSet } from '../interfaces/SpriteSet'
 import Actions from '../types/Actions'
 
+import background from './background.png'
+
 import hud_a from './hud_a.png'
 import hud_d from './hud_d.png'
 import hud_e from './hud_e.png'
 import hud_shift from './hud_shift.png'
+import hud_space from './hud_space.png'
 
 import blue_dino from './BlueDino.png'
 import red_dino from './RedDino.png'
@@ -123,6 +126,22 @@ export const hud_e_sprite: SpriteSet = new SpriteSet(
 export const hud_shift_sprite: SpriteSet = new SpriteSet(
     "hud_shift",
     hud_shift,
+    new Map<Actions, Array<number>>([
+        [Actions.Idle, [0, 1]]
+    ]),
+    1
+)
+export const hud_space_sprite: SpriteSet = new SpriteSet(
+    "hud_space",
+    hud_space,
+    new Map<Actions, Array<number>>([
+        [Actions.Idle, [0, 1]]
+    ]),
+    1
+)
+export const background_sprite: SpriteSet = new SpriteSet(
+    "background",
+    background,
     new Map<Actions, Array<number>>([
         [Actions.Idle, [0, 1]]
     ]),

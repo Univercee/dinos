@@ -1,4 +1,3 @@
-import GameObjects from "./GameObjects"
 import Keys from "./types/Keys"
 
 export const input = new Map<Keys, boolean>([
@@ -35,12 +34,10 @@ function toKey(key: string): Keys
     if(input.has(key)){
       input.set(key, true)
     }
-    GameObjects.forEach(el => el.onKeyDown(input))
   }
   window.onkeyup = function(event){
     let key = toKey(event.key.toLowerCase())
     if(input.has(key)){
       input.set(key, false)
     }
-    GameObjects.forEach(el => el.onKeyDown(input))
   }

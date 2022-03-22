@@ -67,14 +67,14 @@ export class ObjectState extends React.Component<{}, IObjectState> implements IO
         let coords = this.sprite_set.getIndex() * this.frame_width
         return <div 
         className="sprite" 
-        style={{visibility: this.visibility ? "visible" : "hidden", bottom: this.position.y, left: this.position.x, height: "max-content", width: this.frame_width+"px", overflow: "hidden", transform: "scaleX("+this.flip+")"}}
+        style={{visibility: this.visibility ? "visible" : "hidden", bottom: this.position.y+"em", left: this.position.x+"em", height: "max-content", width: this.frame_width+"em", overflow: "hidden", transform: "scaleX("+this.flip+")"}}
         key={this.id}
         id={this.id.toString()}
         >
         <img 
             src={this.sprite_set.getSrc()} 
             alt={this.constructor.name} 
-            style={{ objectFit: "cover", margin: "0 0 0 -"+coords+"px", width: this.sprite_set.getLength() * this.frame_width+"px"}}
+            style={{ objectFit: "cover", margin: "0 0 0 -"+coords+"em", width: this.sprite_set.getLength() * this.frame_width+"em"}}
         />
         {this.childs.forEach(el => {
             el.render()

@@ -5,6 +5,7 @@ import { blue_cristall_sprite, green_cristall_sprite, red_cristall_sprite, yello
 import Colors from '../../types/Colors'
 import Keys from '../../types/Keys'
 import Classes from '../../types/Classes'
+import { input } from '../../keyListener'
 
 export class Cristall extends GameObject{
     readonly classname: Classes = Classes.Cristall
@@ -17,20 +18,18 @@ export class Cristall extends GameObject{
     private color: Colors
     private hud: GameObject
     constructor(color: Colors){
-        super("Cristall", 30, Cristall.SPRITE_SETS.get(color)!, {x:0, y:0}, {x:0, y:0})
+        super("Cristall", 3, Cristall.SPRITE_SETS.get(color)!, {x:0, y:0}, {x:0, y:0})
         this.color = color
         this.hud = new Hud(Keys.E)
-        this.hud.setPosition(this.getPosition().x+this.getFrameWidth()/2-this.hud.getFrameWidth()/2, this.getPosition().y+5+this.getFrameWidth())
+        this.hud.setVisibility(false)
+        this.hud.setPosition(this.getPosition().x+this.getFrameWidth()/2-this.hud.getFrameWidth()/2, this.getPosition().y+2+this.getFrameWidth())
         this.addChild(this.hud)
     }
     getColor(){
         return this.color
     }
-    onTouch(): void {
-        
-    }
-    onKeyDown(): void {
-        
+    onTouch(){
+        input.set(Keys.D, true)
     }
     onOverlap(obj: GameObject): void {
         

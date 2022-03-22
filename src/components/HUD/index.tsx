@@ -1,6 +1,6 @@
 import GameObject from '../GameObject'
 import { SpriteSet } from '../../interfaces/SpriteSet'
-import { hud_a_sprite, hud_d_sprite, hud_e_sprite, hud_shift_sprite } from '../../sprites'
+import { hud_a_sprite, hud_d_sprite, hud_e_sprite, hud_shift_sprite, hud_space_sprite } from '../../sprites'
 import Keys from '../../types/Keys'
 import Classes from '../../types/Classes'
 
@@ -11,11 +11,11 @@ export class Hud extends GameObject{
         [Keys.D, hud_d_sprite],
         [Keys.E, hud_e_sprite],
         [Keys.Shift, hud_shift_sprite],
+        [Keys.Space, hud_space_sprite]
         //[Keys.Space, new SpriteSet(yellow_dino_sprite)],
     ])
     constructor(key: Keys){
-        super("Cristall", 30, Hud.SPRITE_SETS.get(key)!, {x:0, y:0}, {x:0, y:0})
-        this.setVisibility(false)
+        super("Hud", 3, Hud.SPRITE_SETS.get(key)!, {x:0, y:0}, {x:0, y:0})
     }
     onTouch(): void {
         

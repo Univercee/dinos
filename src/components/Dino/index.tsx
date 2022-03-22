@@ -6,6 +6,7 @@ import Colors from '../../types/Colors'
 import { Cristall } from '../Cristall'
 import Keys from '../../types/Keys'
 import Classes from '../../types/Classes'
+import { input } from '../../keyListener';
 
 export class Dino extends GameObject{
     readonly classname: Classes = Classes.Dino
@@ -19,17 +20,14 @@ export class Dino extends GameObject{
     ])
     private color: Colors
     constructor(color: Colors){
-        super("Dino", 50, Dino.SPRITE_SETS.get(color)!, {x:4, y:4}, {x:8, y:0})
+        super("Dino", 6, Dino.SPRITE_SETS.get(color)!, {x:0.6, y:0.6}, {x:1.2, y:0})
         this.jump_duration = 10
         this.color = color
     }
     getColor(){
         return this.color
     }
-    onTouch(): void {
-        
-    }
-    onKeyDown(input: Map<Keys, boolean>){
+    onKeyDown(){
         if(input.get(Keys.E)){
             this.overlap.forEach(el => {
                 switch(el.getClassname()){
@@ -72,7 +70,6 @@ export class Dino extends GameObject{
             }
         }
         else if(input.get(Keys.Space)){
-            this.setFlip(1)
             this.setDirection({x:0, y:-1})
             this.setAction(Actions.Jump)
             this.setJumpStartTime(this.time)

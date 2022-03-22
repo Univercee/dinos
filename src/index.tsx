@@ -1,25 +1,42 @@
 import ReactDOM from 'react-dom';
 import './index.css';
 import './keyListener'
+import GameObjects from './GameObjects';
 import { Dino } from './components/Dino'
 import { Cristall } from './components/Cristall';
-import GameObjects from './GameObjects';
 import Colors from './types/Colors';
+import { Hud } from './components/HUD';
+import Keys from './types/Keys';
+import { Background } from './components/Background';
+
 // import reportWebVitals from './reportWebVitals';
 
 const FPS = 8;
-let blue_cristall = new Cristall(Colors.Blue)
-blue_cristall.setPosition(200, 0)
-let green_cristall = new Cristall(Colors.Green)
-green_cristall.setPosition(300, 0)
-let red_cristall = new Cristall(Colors.Red)
-red_cristall.setPosition(400, 0)
-let yellow_cristall = new Cristall(Colors.Yellow)
-yellow_cristall.setPosition(500, 0)
+new Background()
 
+let hud_a = new Hud(Keys.A)
+let hud_d = new Hud(Keys.D)
+let hud_shift = new Hud(Keys.Shift)
+let hud_space = new Hud(Keys.Space)
+hud_a.setPosition(15,20)
+hud_d.setPosition(20,20)
+hud_shift.setPosition(4,20)
+hud_shift.setFrameWidth(7.4)
+hud_space.setPosition(3,15)
+hud_space.setFrameWidth(22)
+
+let blue_cristall = new Cristall(Colors.Blue)
+let green_cristall = new Cristall(Colors.Green)
+let red_cristall = new Cristall(Colors.Red)
+let yellow_cristall = new Cristall(Colors.Yellow)
+blue_cristall.setPosition(15, 3)
+green_cristall.setPosition(35, 3)
+red_cristall.setPosition(55, 3)
+yellow_cristall.setPosition(75, 3)
 
 let dino = new Dino(Colors.Blue)
-dino.setPosition(400, 0)
+dino.setPosition(4, 2.2)
+
 dino.addOverlapListener(blue_cristall)
 dino.addOverlapListener(green_cristall)
 dino.addOverlapListener(red_cristall)
@@ -34,6 +51,8 @@ function tick(){
     GameObjects.map(el => el.render()),
     document.getElementById('root') 
   );
+  console.log(dino.getPosition);
+  
 }
 setInterval(tick, 1/FPS * 1000)
 
