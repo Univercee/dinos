@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/react_app/static/css/main.025ca416.css",
-    "main.js": "/react_app/static/js/main.86f88f7d.js",
+    "main.js": "/react_app/static/js/main.3147e458.js",
     "static/media/background.png": "/react_app/static/media/background.68ca4034cb1afde37337.png",
     "static/media/BlueCristall.png": "/react_app/static/media/BlueCristall.b3d9a906b06e4d55f6f1.png",
     "static/media/GreenCristall.png": "/react_app/static/media/GreenCristall.e2cef687e7f459141a12.png",
@@ -9,10 +9,10 @@
     "static/media/RedCristall.png": "/react_app/static/media/RedCristall.05e20908fbe897e4ab31.png",
     "index.html": "/react_app/index.html",
     "main.025ca416.css.map": "/react_app/static/css/main.025ca416.css.map",
-    "main.86f88f7d.js.map": "/react_app/static/js/main.86f88f7d.js.map"
+    "main.3147e458.js.map": "/react_app/static/js/main.3147e458.js.map"
   },
   "entrypoints": [
     "static/css/main.025ca416.css",
-    "static/js/main.86f88f7d.js"
+    "static/js/main.3147e458.js"
   ]
 }
