@@ -18,11 +18,11 @@ export class Cristall extends GameObject{
     private color: Colors
     private hud: GameObject
     constructor(color: Colors){
-        super("Cristall", 3, Cristall.SPRITE_SETS.get(color)!, {x:0, y:0}, {x:0, y:0})
+        super("Cristall", 5, Cristall.SPRITE_SETS.get(color)!, {x:0, y:0}, {x:0, y:0})
         this.color = color
         this.hud = new Hud(Keys.E)
+        this.hud.setPosition(this.getFrameWidth()/2-this.hud.getFrameWidth()/2, 100)
         this.hud.setVisibility(false)
-        this.hud.setPosition(this.getPosition().x+this.getFrameWidth()/2-this.hud.getFrameWidth()/2, this.getPosition().y+2+this.getFrameWidth())
         this.addChild(this.hud)
     }
     getColor(){

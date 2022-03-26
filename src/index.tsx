@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom';
 import './index.css';
 import './keyListener'
-import GameObjects from './GameObjects';
+import GameObjects, { addObject } from './GameObjects';
 import { Dino } from './components/Dino'
 import { Cristall } from './components/Cristall';
 import Colors from './types/Colors';
@@ -18,24 +18,26 @@ let hud_a = new Hud(Keys.A)
 let hud_d = new Hud(Keys.D)
 let hud_shift = new Hud(Keys.Shift)
 let hud_space = new Hud(Keys.Space)
-hud_a.setPosition(15,20)
-hud_d.setPosition(20,20)
-hud_shift.setPosition(4,20)
-hud_shift.setFrameWidth(7.4)
-hud_space.setPosition(3,15)
-hud_space.setFrameWidth(22)
+hud_a.setPosition(20,40)
+hud_a.setFrameWidth(5)
+hud_d.setPosition(25,40)
+hud_d.setFrameWidth(5)
+hud_shift.setPosition(5,40)
+hud_shift.setFrameWidth(12.5)
+hud_space.setPosition(1.5,30)
+hud_space.setFrameWidth(35)
 
 let blue_cristall = new Cristall(Colors.Blue)
 let green_cristall = new Cristall(Colors.Green)
 let red_cristall = new Cristall(Colors.Red)
 let yellow_cristall = new Cristall(Colors.Yellow)
-blue_cristall.setPosition(15, 3)
-green_cristall.setPosition(35, 3)
-red_cristall.setPosition(55, 3)
-yellow_cristall.setPosition(75, 3)
+blue_cristall.setPosition(15, 7)
+green_cristall.setPosition(35, 7)
+red_cristall.setPosition(55, 7)
+yellow_cristall.setPosition(75, 7)
 
 let dino = new Dino(Colors.Blue)
-dino.setPosition(4, 2.2)
+dino.setPosition(4, 5.5)
 
 dino.addOverlapListener(blue_cristall)
 dino.addOverlapListener(green_cristall)
@@ -45,14 +47,26 @@ blue_cristall.addOverlapListener(dino)
 green_cristall.addOverlapListener(dino)
 red_cristall.addOverlapListener(dino)
 yellow_cristall.addOverlapListener(dino)
+
+new Background().addChild(blue_cristall)
+new Background().addChild(green_cristall)
+new Background().addChild(red_cristall)
+new Background().addChild(yellow_cristall)
+new Background().addChild(hud_a)
+new Background().addChild(hud_d)
+new Background().addChild(hud_shift)
+new Background().addChild(hud_space)
+new Background().addChild(dino)
+
+addObject(new Background())
 function tick(){
-  GameObjects.map(el => el.tick())
+  GameObjects.forEach((value, key)=>{
+    value.tick()
+  })
   ReactDOM.render(
-    GameObjects.map(el => el.render()),
+    Array.from(GameObjects).map(([key, value]) => value.render()),
     document.getElementById('root') 
   );
-  console.log(dino.getPosition);
-  
 }
 setInterval(tick, 1/FPS * 1000)
 
