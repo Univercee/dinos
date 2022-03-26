@@ -20,7 +20,7 @@ export class Dino extends GameObject{
     ])
     private color: Colors
     constructor(color: Colors){
-        super("Dino", 6, Dino.SPRITE_SETS.get(color)!, {x:0.6, y:0.6}, {x:1.2, y:0})
+        super("Dino", 7, Dino.SPRITE_SETS.get(color)!, {x:0.6, y:0.6}, {x:1.2, y:0})
         this.jump_duration = 10
         this.color = color
     }
