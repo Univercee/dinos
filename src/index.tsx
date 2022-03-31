@@ -1,7 +1,6 @@
 import ReactDOM from 'react-dom';
 import './index.css';
 import './keyListener'
-import GameObjects, { addObject } from './GameObjects';
 import { Dino } from './components/Dino'
 import { Cristall } from './components/Cristall';
 import Colors from './types/Colors';
@@ -18,26 +17,26 @@ let hud_a = new Hud(Keys.A)
 let hud_d = new Hud(Keys.D)
 let hud_shift = new Hud(Keys.Shift)
 let hud_space = new Hud(Keys.Space)
-hud_a.setPosition(20,40)
-hud_a.setFrameWidth(5)
-hud_d.setPosition(25,40)
-hud_d.setFrameWidth(5)
-hud_shift.setPosition(5,40)
-hud_shift.setFrameWidth(12.5)
-hud_space.setPosition(1.5,30)
-hud_space.setFrameWidth(35)
+hud_a.getStatic().setPosition([20,40])
+hud_a.getStatic().setFrameWidth(5)
+hud_d.getStatic().setPosition([25,40])
+hud_d.getStatic().setFrameWidth(5)
+hud_shift.getStatic().setPosition([5,40])
+hud_shift.getStatic().setFrameWidth(12.5)
+hud_space.getStatic().setPosition([1.5,30])
+hud_space.getStatic().setFrameWidth(35)
 
 let green_cristall = new Cristall(Colors.Green)
 let red_cristall = new Cristall(Colors.Red)
 let yellow_cristall = new Cristall(Colors.Yellow)
 let blue_cristall = new Cristall(Colors.Blue)
-green_cristall.setPosition(15, 7)
-red_cristall.setPosition(35, 7)
-yellow_cristall.setPosition(55, 7)
-blue_cristall.setPosition(75, 7)
+green_cristall.getStatic().setPosition([15, 7])
+red_cristall.getStatic().setPosition([35, 7])
+yellow_cristall.getStatic().setPosition([55, 7])
+blue_cristall.getStatic().setPosition([75, 7])
 
 let dino = new Dino(Colors.Blue)
-dino.setPosition(4, 5.5)
+dino.getStatic().setPosition([15, 5.5])
 
 dino.addOverlapListener(green_cristall)
 dino.addOverlapListener(red_cristall)
@@ -57,14 +56,10 @@ new Background().addChild(hud_d)
 new Background().addChild(hud_shift)
 new Background().addChild(hud_space)
 new Background().addChild(dino)
-
-addObject(new Background())
 function tick(){
-  GameObjects.forEach((value, key)=>{
-    value.tick()
-  })
+  new Background().tick()
   ReactDOM.render(
-    Array.from(GameObjects).map(([key, value]) => value.render()),
+    new Background().render(),
     document.getElementById('root') 
   );
 }
