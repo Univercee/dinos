@@ -1,15 +1,14 @@
-import GameObject from '../GameObject'
-import { SpriteSet } from '../../interfaces/SpriteSet'
+import { GameObject } from '../GameObject'
+import { Sprite } from '../../interfaces/Sprite'
 import { Hud } from '../HUD'
 import { blue_cristall_sprite, green_cristall_sprite, red_cristall_sprite, yellow_cristall_sprite } from '../../sprites'
 import Colors from '../../types/Colors'
 import Keys from '../../types/Keys'
 import Classes from '../../types/Classes'
-import { input } from '../../keyListener'
 
 export class Cristall extends GameObject{
     readonly classname: Classes = Classes.Cristall
-    private static SPRITE_SETS: Map<Colors, SpriteSet> = new Map([
+    private static SPRITE_SETS: Map<Colors, Sprite> = new Map([
         [Colors.Blue, blue_cristall_sprite],
         [Colors.Red, red_cristall_sprite],
         [Colors.Green, green_cristall_sprite],
@@ -18,32 +17,28 @@ export class Cristall extends GameObject{
     private color: Colors
     private hud: GameObject
     constructor(color: Colors){
-        super("Cristall", 4, Cristall.SPRITE_SETS.get(color)!, {x:0, y:0}, {x:0, y:0})
+        super(Cristall.SPRITE_SETS.get(color)!)
         this.color = color
         this.hud = new Hud(Keys.E)
-        this.hud.setPosition(this.getFrameWidth()/2-this.hud.getFrameWidth()/2, 100)
-        this.hud.setVisibility(false)
+        this.getStatic().setFrameWidth(5)
+        this.hud.getStatic().setFrameWidth(4)
+        this.hud.getStatic().setPosition([this.getStatic().getFrameWidth()/2-this.hud.getStatic().getFrameWidth()/2, 100])
+        this.hud.getStatic().setVisibility(false)
         this.addChild(this.hud)
     }
     getColor(){
         return this.color
     }
-    onTouch(){
-        input.set(Keys.D, true)
-    }
-    onOverlap(obj: GameObject): void {
-        
-    }
-    onBeginOverlap(obj: GameObject): void {   
-        switch(obj.getClassname()){
+    onBeginOverlap(o: GameObject): void {
+        switch(o.getClassname()){
             case Classes.Dino:
-                this.hud.setVisibility(true)
+                this.hud.getStatic().setVisibility(true)
         }
     }
-    onEndOverlap(obj: GameObject): void {
-        switch(obj.getClassname()){
+    onEndOverlap(o: GameObject): void {
+        switch(o.getClassname()){
             case Classes.Dino:
-                this.hud.setVisibility(false)
+                this.hud.getStatic().setVisibility(false)
         }
     }
 }
