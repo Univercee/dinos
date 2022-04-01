@@ -36,7 +36,7 @@ yellow_cristall.getStatic().setPosition([55, 7])
 blue_cristall.getStatic().setPosition([75, 7])
 
 let dino = new Dino(Colors.Blue)
-dino.getStatic().setPosition([15, 5.5])
+dino.getStatic().setPosition([90, 5.5])
 
 dino.addOverlapListener(green_cristall)
 dino.addOverlapListener(red_cristall)
@@ -56,6 +56,8 @@ new Background().addChild(hud_d)
 new Background().addChild(hud_shift)
 new Background().addChild(hud_space)
 new Background().addChild(dino)
+dino.addOverlapListener(new Background())
+new Background().addOverlapListener(dino)
 function tick(){
   new Background().tick()
   ReactDOM.render(

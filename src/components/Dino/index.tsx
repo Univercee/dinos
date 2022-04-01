@@ -79,6 +79,5 @@ export class Dino extends GameObject{
             this.clearActions()
             this.addAction(Actions._0_Idle)
         }
-        this.getStatic().getSprite().setAction(Array.from(this.getActions()).sort().reverse()[0])
     }
 }

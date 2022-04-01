@@ -5,6 +5,7 @@ import { Sprite } from "./Sprite"
 export interface IAction{
     update_action(): Actions
     update(o: GameObject): void
+    rollback(o: GameObject): void
 }
 export interface IStatic{
     getSprite(): Sprite
@@ -57,10 +58,12 @@ export class Static implements IStatic, IAction {
     update_action(): Actions {
         return this.UPDATE_ACTION
     }
+    rollback(o: GameObject): void {}
 }
 export interface IMovable {
     getSpeed(): number
     getDirection(): number
+    getPrevPosition(): [number, number]
 
     setSpeed(s: number): void
     setDirection(d: number): void
@@ -69,42 +72,54 @@ export class Walkable implements IMovable, IAction {
     private readonly UPDATE_ACTION: Actions = Actions._1_Walk
     private speed: number 
     private direction: number = 0
+    private prev_position: [number, number] = [0, 0]
     constructor(speed: number){
         this.speed = speed
     }
     getSpeed(): number { return this.speed }
     getDirection(): number { return this.direction }
+    getPrevPosition(): [number, number] { return this.prev_position }
 
     setSpeed(s: number): void { this.speed = s }
     setDirection(d: number): void { this.direction = d }
 
     update(o: GameObject): void {
         let position = o.getStatic().getPosition()
+        this.prev_position = position
         o.getStatic().setPosition([position[0]+this.speed*this.direction, position[1]])
     }
     update_action(): Actions {
         return this.UPDATE_ACTION
+    }
+    rollback(o: GameObject): void {
+        o.getStatic().setPosition(this.prev_position)
     }
 }
 export class Runnable implements IMovable, IAction {
     private readonly UPDATE_ACTION: Actions = Actions._2_Run
     private speed: number 
     private direction: number = 0
+    private prev_position: [number, number] = [0, 0]
     constructor(speed: number){
         this.speed = speed
     }
     getSpeed(): number { return this.speed }
     getDirection(): number { return this.direction }
+    getPrevPosition(): [number, number] { return this.prev_position }
 
     setSpeed(s: number): void { this.speed = s }
     setDirection(d: number): void { this.direction = d }
 
     update(o: GameObject): void {
         let position = o.getStatic().getPosition()
+        this.prev_position = position
         o.getStatic().setPosition([position[0]+this.speed*this.direction, position[1]])
     }
     update_action(): Actions {
         return this.UPDATE_ACTION
+    }
+    rollback(o: GameObject): void {
+        o.getStatic().setPosition(this.prev_position)
     }
 }
 export interface IJumpable {
@@ -147,6 +162,7 @@ export class Jumpable implements IJumpable, IAction {
     update_action(): Actions {
         return this.UPDATE_ACTION
     }
+    rollback(o: GameObject): void {}
 }
 export interface IOverlapListener {
     addListener(o: GameObject): void

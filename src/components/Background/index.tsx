@@ -39,4 +39,10 @@ export class Background extends GameObject{
         }
         </div>
     }
+    onEndOverlap(o: GameObject){
+        let position = o.getStatic().getPosition()
+        let width = o.getStatic().getFrameWidth()
+        let shift = position[0]>0 ? -width : 100
+        o.getStatic().setPosition([shift, position[1]])
+    }
 }

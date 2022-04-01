@@ -12,6 +12,7 @@ export class GameObject extends React.Component implements IOverlapSubscriber{
     private childs: Array<GameObject> = []
     private abilities: Array<IAction>
     private active_action: Set<Actions> = new Set()
+    private last_action: Actions = Actions._0_Idle
     private static: Static
     private walkable: Walkable
     private runnable: Runnable
@@ -24,7 +25,7 @@ export class GameObject extends React.Component implements IOverlapSubscriber{
         this.walkable = new Walkable(move_speed)
         this.runnable = new Runnable(run_speed)
         this.jumpable = new Jumpable(jump_duration, jump_speed)
-        this.abilities = [this.static, this.walkable, this.runnable, this.jumpable]
+        this.abilities = [this.walkable, this.runnable, this.jumpable]
     }
     render(){
         let coords = this.static.getSprite().getIndex() * 100
@@ -58,15 +59,19 @@ export class GameObject extends React.Component implements IOverlapSubscriber{
     tick(){
         this.onKeyDown()
         this.update()
+        this.static.getSprite().setAction(this.getLastAction())
         this.overlap_listener.listen(this)
         this.childs.forEach(el => {el.tick()})
     }
     update(): void{
         let abilities = this.abilities.filter((el)=>{return this.active_action.has(el.update_action())})
-        abilities.forEach((el)=>{
+        abilities.push(this.static)
+        abilities
+        .sort((a, b) => Object.values(Actions).indexOf(a.update_action()) - Object.values(Actions).indexOf(b.update_action()))
+        .forEach((el)=>{
             el.update(this)
-        })
-        if(!this.active_action.has(Actions._0_Idle)) this.static.update(this)
+            this.last_action = el.update_action()
+        })     
     }
     
     addOverlapListener(o: GameObject): void{ this.overlap_listener.addListener(o) }
@@ -86,6 +91,10 @@ export class GameObject extends React.Component implements IOverlapSubscriber{
     getJumpable(): IJumpable { return this.jumpable }
     getOverlapListener(): IOverlapListener { return this.overlap_listener}
     getActions(): Set<Actions>{ return this.active_action }
+    getLastAction(): Actions { return this.last_action }
+    abilityByAction(action: Actions): IAction {
+        return this.abilities.filter((el)=>{return el.update_action() === action})[0]
+    }
 
     hasAction(action: Actions): boolean { return this.active_action.has(action) }
     addAction(action: Actions){ 
