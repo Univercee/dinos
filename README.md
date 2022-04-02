@@ -1,5 +1,5 @@
 # Getting Started with Create React App
-![alt text](./src/sprites/blue_dino.png)
+![alt text](https://github.com/Univercee/react_app/blob/master/src/sprites/BlueDino.png)
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
