@@ -105,6 +105,10 @@ export class GameObject extends React.Component implements IOverlapSubscriber{
     removeAction(action: Actions){ this.active_action.delete(action) }
     clearActions(){ this.active_action.clear() }
 
-    addChild(o: GameObject): void { if(!this.childs.includes(o)) this.childs.push(o)}
+    addChild(o: GameObject): void { if(!this.childs.includes(o)){ this.childs.push(o); o.parent = this}}
     removeChild(o: GameObject): void { this.childs = this.childs.filter((el)=>{return el !== o})}
+    removeAllChilds(){
+        this.childs.forEach((el)=>{ el.parent = null })
+        this.childs = []
+    }
 }

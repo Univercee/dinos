@@ -21,7 +21,7 @@ import yellow_cristall from './YellowCristall.png'
 
 export const red_dino_sprite: Sprite = new Sprite(
     red_dino,
-    new Map<Actions, Array<number>>([
+    new Map<Actions, [number, number]>([
         [Actions._0_Idle, [0, 4]], 
         [Actions._1_Walk, [4, 10]],
         [Actions._3_Jump, [11, 11]], 
@@ -31,7 +31,7 @@ export const red_dino_sprite: Sprite = new Sprite(
 )
 export const blue_dino_sprite: Sprite = new Sprite(
     blue_dino,
-    new Map<Actions, Array<number>>([
+    new Map<Actions, [number, number]>([
         [Actions._0_Idle, [0, 4]], 
         [Actions._1_Walk, [4, 10]], 
         [Actions._3_Jump, [11, 11]], 
@@ -41,7 +41,7 @@ export const blue_dino_sprite: Sprite = new Sprite(
 )
 export const green_dino_sprite: Sprite = new Sprite(
     green_dino,
-    new Map<Actions, Array<number>>([
+    new Map<Actions, [number, number]>([
         [Actions._0_Idle, [0, 4]], 
         [Actions._1_Walk, [4, 10]], 
         [Actions._3_Jump, [11, 11]], 
@@ -51,7 +51,7 @@ export const green_dino_sprite: Sprite = new Sprite(
 )
 export const yellow_dino_sprite: Sprite = new Sprite(
     yellow_dino,
-    new Map<Actions, Array<number>>([
+    new Map<Actions, [number, number]>([
         [Actions._0_Idle, [0, 4]], 
         [Actions._1_Walk, [4, 10]], 
         [Actions._3_Jump, [11, 11]], 
@@ -61,70 +61,70 @@ export const yellow_dino_sprite: Sprite = new Sprite(
 )
 export const blue_cristall_sprite: Sprite = new Sprite(
     blue_cristall,
-    new Map<Actions, Array<number>>([
+    new Map<Actions, [number, number]>([
         [Actions._0_Idle, [0, 6]]
     ]),
     6
 )
 export const red_cristall_sprite: Sprite = new Sprite(
     red_cristall,
-    new Map<Actions, Array<number>>([
+    new Map<Actions, [number, number]>([
         [Actions._0_Idle, [0, 6]]
     ]),
     6
 )
 export const green_cristall_sprite: Sprite = new Sprite(
     green_cristall,
-    new Map<Actions, Array<number>>([
+    new Map<Actions, [number, number]>([
         [Actions._0_Idle, [0, 6]]
     ]),
     6
 )
 export const yellow_cristall_sprite: Sprite = new Sprite(
     yellow_cristall,
-    new Map<Actions, Array<number>>([
+    new Map<Actions, [number, number]>([
         [Actions._0_Idle, [0, 6]]
     ]),
     6
 )
 export const hud_a_sprite: Sprite = new Sprite(
     hud_a,
-    new Map<Actions, Array<number>>([
+    new Map<Actions, [number, number]>([
         [Actions._0_Idle, [0, 1]]
     ]),
     1
 )
 export const hud_d_sprite: Sprite = new Sprite(
     hud_d,
-    new Map<Actions, Array<number>>([
+    new Map<Actions, [number, number]>([
         [Actions._0_Idle, [0, 1]]
     ]),
     1
 )
 export const hud_e_sprite: Sprite = new Sprite(
     hud_e,
-    new Map<Actions, Array<number>>([
+    new Map<Actions, [number, number]>([
         [Actions._0_Idle, [0, 1]]
     ]),
     1
 )
 export const hud_shift_sprite: Sprite = new Sprite(
     hud_shift,
-    new Map<Actions, Array<number>>([
+    new Map<Actions, [number, number]>([
         [Actions._0_Idle, [0, 1]]
     ]),
     1
 )
 export const hud_space_sprite: Sprite = new Sprite(
     hud_space,
-    new Map<Actions, Array<number>>([
+    new Map<Actions, [number, number]>([
         [Actions._0_Idle, [0, 1]]
     ]),
     1
 )
 export const background_sprite: Sprite = new Sprite(
     background,
-    new Map<Actions, Array<number>>([
+    new Map<Actions, [number, number]>([
         [Actions._0_Idle, [0, 1]]
     ]),
     1

@@ -36,7 +36,7 @@ yellow_cristall.getStatic().setPosition([55, 7])
 blue_cristall.getStatic().setPosition([75, 7])
 
 let dino = new Dino(Colors.Blue)
-dino.getStatic().setPosition([90, 5.5])
+dino.getStatic().setPosition([5, 5.5])
 
 dino.addOverlapListener(green_cristall)
 dino.addOverlapListener(red_cristall)

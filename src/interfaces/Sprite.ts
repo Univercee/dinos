@@ -9,7 +9,7 @@ export interface ISprite
     getSrc(): string
     getAction(): Actions
     getLength(): number
-    getBreakpoints(): Map<Actions, Array<number>>
+    getBreakpoints(): Map<Actions, [number, number]>
     getIndex(): number
 
     setAction(action: Actions): void   
@@ -18,12 +18,12 @@ export interface ISprite
 export class Sprite implements ISprite{
     private id: number
     private src: string
-    private breakpoints: Map<Actions, Array<number>>
+    private breakpoints: Map<Actions, [number, number]>
     private length: number
     private action: Actions = Actions._0_Idle
     private actions: Array<Actions>
     private index: number = 0
-    constructor(src: string, breakpoints: Map<Actions, Array<number>>, length: number){
+    constructor(src: string, breakpoints: Map<Actions, [number, number]>, length: number){
         if(!breakpoints.has(Actions._0_Idle)){
             throw new Error("Sprite must have _0_Idle action")
         }
