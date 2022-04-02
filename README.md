@@ -1,11 +1,25 @@
 # \<Class\>GameObject
 
 ## Description
-Main game component. All objects on the screen extends this class. To get access to action interfaces use methods: <br/>
+All objects on the screen extends this class. To get access to action interfaces use methods: <br/>
 <i>getStatic()</i> <br/>
 <i>getWalkable()</i> <br/>
 <i>getRunnable()</i> <br/>
 <i>getJumpable()</i> <br/>
+
+## Constructor
+<i>sprite</i>: Sprite </br>
+<i>move_speed</i>: number = 0 </br>
+<i>run_speed</i>: number = 0 </br>
+<i>jump_duration</i>: number = 0 </br>
+<i>jump_speed</i>: number = 0
+</br></br></br>
+
+# \<Class\>Background (extends GameObject)
+
+## Description
+Main game component. Realise singleton pattern. </br>
+All screen objects must be childs of the Backgroud
 
 ## Constructor
 <i>sprite</i>: Sprite </br>
