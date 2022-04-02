@@ -1,46 +1,91 @@
-# Getting Started with Create React App
-![alt text](https://github.com/Univercee/react_app/blob/master/src/sprites/BlueDino.png)
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# \<Class\>GameObject
 
-## Available Scripts
+## Description
+Main game component. All objects on the screen extends this class. To get access to action interfaces use methods: <br/>
+<i>getStatic()</i> <br/>
+<i>getWalkable()</i> <br/>
+<i>getRunnable()</i> <br/>
+<i>getJumpable()</i> <br/>
 
-In the project directory, you can run:
+## Constructor
+<i>sprite</i>: Sprite </br>
+<i>move_speed</i>: number = 0 </br>
+<i>run_speed</i>: number = 0 </br>
+<i>jump_duration</i>: number = 0 </br>
+<i>jump_speed</i>: number = 0
+</br></br></br>
 
-### `npm start`
+# \<Enum\>Actions
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Description
+All actions <i>GameObject</i> can do </br>
+Action list: </br>
+<i>_0_Idle</i> </br>
+<i>_1_Walk</i> </br>
+<i>_2_Run</i> </br>
+<i>_3_Jump</i>
+</br></br></br>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# \<Class\>Sprite
 
-### `npm test`
+## Description
+Image with frame storyboard. Sprite image example: </br>
+![SpriteExample](https://github.com/Univercee/react_app/blob/master/src/sprites/BlueDino.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Constructor
+<i>src</i>: string //image data string like 'data:image/jpeg;base64, LzlqLzRBQ... '; import src from './image.png' </br>
+<i>breakpoints</i>: Map<Actions, [start_index: number, end_index: number]> //image actions slises </br>
+<i>length</i>: number //number of the all frames on the image
+</br></br></br>
 
-### `npm run build`
+# \<Class\>Static
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Description
+Realise <i>_0_Idle</i> action
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Constructor
+<i>sprite</i>: Sprite <br/>
+<i>position</i>: [number, number] = [0, 0]
+</br></br></br>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# \<Class\>Walkable
 
-### `npm run eject`
+## Description
+Realise <i>_1_Walk</i> action
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Constructor
+<i>speed</i>: number
+</br></br></br>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# \<Class\>Runnable
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Description
+Realise <i>_2_Run</i> action
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Constructor
+<i>speed</i>: number
+</br></br></br>
 
-## Learn More
+# \<Class\>Jumpable
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Description
+Realise <i>_3_Jump</i> action
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Constructor
+<i>duration</i>: number </br>
+<i>speed</i>: number
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
