@@ -20,8 +20,8 @@ export class Cristall extends GameObject{
         super(Cristall.SPRITE_SETS.get(color)!)
         this.color = color
         this.hud = new Hud(Keys.E)
-        this.getStatic().setFrameWidth(5)
-        this.hud.getStatic().setFrameWidth(4)
+        this.getStatic().setFrameWidth(3)
+        this.hud.getStatic().setFrameWidth(2.5)
         this.hud.getStatic().setPosition([this.getStatic().getFrameWidth()/2-this.hud.getStatic().getFrameWidth()/2, 100])
         this.hud.getStatic().setVisibility(false)
         this.addChild(this.hud)

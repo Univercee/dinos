@@ -18,7 +18,7 @@ export class Dino extends GameObject{
     ])
     private color: Colors
     constructor(color: Colors){
-        super(Dino.SPRITE_SETS.get(color)!, 1, 2, 9, 0.5)
+        super(Dino.SPRITE_SETS.get(color)!, 0.5, 0.8, 9, 0.5)
         this.getStatic().setFrameWidth(8)
         this.color = color
     }
