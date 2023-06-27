@@ -2,6 +2,7 @@ enum Classes{
     Dino,
     Cristall,
     Hud,
-    GameObject
+    GameObject,
+    LevelSwitcher
 }
 export default Classes

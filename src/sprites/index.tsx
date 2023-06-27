@@ -3,6 +3,8 @@ import Actions from '../types/Actions'
 
 import background from './assets/background.png'
 
+import github from './assets/github.png'
+
 import hud_a from './assets/hud_a.png'
 import hud_d from './assets/hud_d.png'
 import hud_e from './assets/hud_e.png'
@@ -125,6 +127,14 @@ export const hud_space_sprite: Sprite = new Sprite(
 )
 export const background_sprite: Sprite = new Sprite(
     background,
+    new Map<Actions, [number, number]>([
+        [Actions._0_Idle, [0, 1]]
+    ]),
+    1
+)
+
+export const github_sprite: Sprite = new Sprite(
+    github,
     new Map<Actions, [number, number]>([
         [Actions._0_Idle, [0, 1]]
     ]),

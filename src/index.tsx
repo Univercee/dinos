@@ -1,11 +1,12 @@
 import ReactDom from 'react-dom'
 import { Background } from './components/Background'
-import './levels/level_0'
+import level_0 from './levels/level_0'
 import './index.css';
 
 // import reportWebVitals from './reportWebVitals';
 
 const FPS = 8;
+level_0()
 function tick(){
   new Background().tick()
   ReactDom.render(
