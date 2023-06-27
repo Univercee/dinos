@@ -1,5 +1,5 @@
-import { GameObject } from '../GameObject'
-import { Sprite } from '../../interfaces/Sprite'
+import { GameObject } from '../../core/Objects/GameObject'
+import { Sprite } from '../../core/Sprite'
 import { Hud } from '../HUD'
 import { blue_cristall_sprite, green_cristall_sprite, red_cristall_sprite, yellow_cristall_sprite } from '../../sprites'
 import Colors from '../../types/Colors'

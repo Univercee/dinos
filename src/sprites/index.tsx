@@ -1,23 +1,23 @@
-import { Sprite } from '../interfaces/Sprite'
+import { Sprite } from '../core/Sprite'
 import Actions from '../types/Actions'
 
-import background from './background.png'
+import background from './assets/background.png'
 
-import hud_a from './hud_a.png'
-import hud_d from './hud_d.png'
-import hud_e from './hud_e.png'
-import hud_shift from './hud_shift.png'
-import hud_space from './hud_space.png'
+import hud_a from './assets/hud_a.png'
+import hud_d from './assets/hud_d.png'
+import hud_e from './assets/hud_e.png'
+import hud_shift from './assets/hud_shift.png'
+import hud_space from './assets/hud_space.png'
 
-import blue_dino from './BlueDino.png'
-import red_dino from './RedDino.png'
-import green_dino from './GreenDino.png'
-import yellow_dino from './YellowDino.png'
+import blue_dino from './assets/BlueDino.png'
+import red_dino from './assets/RedDino.png'
+import green_dino from './assets/GreenDino.png'
+import yellow_dino from './assets/YellowDino.png'
 
-import blue_cristall from './BlueCristall.png'
-import red_cristall from './RedCristall.png'
-import green_cristall from './GreenCristall.png'
-import yellow_cristall from './YellowCristall.png'
+import blue_cristall from './assets/BlueCristall.png'
+import red_cristall from './assets/RedCristall.png'
+import green_cristall from './assets/GreenCristall.png'
+import yellow_cristall from './assets/YellowCristall.png'
 
 export const red_dino_sprite: Sprite = new Sprite(
     red_dino,

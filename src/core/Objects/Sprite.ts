@@ -1,20 +1,6 @@
-import Actions from "../types/Actions";
-
+import { ISprite } from "../interfaces/ISprite"
+import Actions from "../types/Actions"
 var id = 0;
-export interface ISprite
-{
-    tick(): void
-
-    getId(): number
-    getSrc(): string
-    getAction(): Actions
-    getLength(): number
-    getBreakpoints(): Map<Actions, [number, number]>
-    getIndex(): number
-
-    setAction(action: Actions): void   
-}
-
 export class Sprite implements ISprite{
     private id: number
     private src: string
@@ -58,4 +44,3 @@ export class Sprite implements ISprite{
         }
     }
 }
-

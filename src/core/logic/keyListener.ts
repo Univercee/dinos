@@ -1,4 +1,4 @@
-import Keys from "./types/Keys"
+import Keys from "../../types/Keys"
 
 export const input = new Map<Keys, boolean>([
     [Keys.A, false],

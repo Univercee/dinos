@@ -1,10 +1,10 @@
-import { GameObject } from '../GameObject'
-import { Sprite } from '../../interfaces/Sprite'
+import { GameObject } from '../../core/Objects/GameObject'
+import { Sprite } from '../../core/Sprite'
 import { blue_dino_sprite, green_dino_sprite, red_dino_sprite, yellow_dino_sprite } from '../../sprites'
 import Colors from '../../types/Colors'
 import Classes from '../../types/Classes'
 import Actions from '../../types/Actions'
-import { input } from '../../keyListener'
+import { input } from '../../core/logic/keyListener'
 import Keys from '../../types/Keys'
 import { Cristall } from '../Cristall'
 

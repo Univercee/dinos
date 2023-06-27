@@ -1,8 +1,18 @@
 import React from "react"
-import { IAction, IJumpable, IMovable, IOverlapListener, IOverlapSubscriber, IStatic, Jumpable, OverlapListener, Runnable, Static, Walkable } from "../../interfaces/Object"
-import { Sprite } from "../../interfaces/Sprite"
+import { Sprite } from "./Sprite"
 import Actions from "../../types/Actions"
 import Classes from "../../types/Classes"
+import { IAction } from "../../interfaces/IAction"
+import { IOverlapSubscriber } from "../../interfaces/IOverlapSubscriber"
+import { Static } from "./ObjectStatic"
+import { Walkable } from "./ObjectWalkable"
+import { Runnable } from "./ObjectRunnable"
+import { Jumpable } from "./ObjectJumpable"
+import { OverlapListener } from "./OverlapListener"
+import { IStatic } from "../../interfaces/IStatic"
+import { IMovable } from "../../interfaces/IMoveable"
+import { IJumpable } from "../../interfaces/IJumpable"
+import { IOverlapListener } from "../../interfaces/IOverlapListener"
 
 var id = 0
 export class GameObject extends React.Component implements IOverlapSubscriber{

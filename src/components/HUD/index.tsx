@@ -1,5 +1,5 @@
-import { GameObject } from '../GameObject'
-import { Sprite } from '../../interfaces/Sprite'
+import { GameObject } from '../../core/Objects/GameObject'
+import { Sprite } from '../../core/Sprite'
 import { hud_a_sprite, hud_d_sprite, hud_e_sprite, hud_shift_sprite, hud_space_sprite } from '../../sprites'
 import Keys from '../../types/Keys'
 import Classes from '../../types/Classes'
