@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import ReactDOM from 'react-dom';
 import { Background } from './components/Background';
 import './levels/level_0'

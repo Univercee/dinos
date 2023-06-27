@@ -1,8 +1,8 @@
+import { IAction } from "../../interfaces/IAction"
+import { ISprite } from "../../interfaces/ISprite"
+import { IStatic } from "../../interfaces/IStatic"
+import Actions from "../../types/Actions"
 import { GameObject } from "./GameObject"
-import Actions from "../types/Actions"
-import { IStatic } from "../interfaces/IStatic"
-import { IAction } from "../interfaces/IAction"
-import { ISprite } from "../interfaces/ISprite"
 
 export class Static implements IStatic, IAction {
     private readonly UPDATE_ACTION: Actions = Actions._0_Idle

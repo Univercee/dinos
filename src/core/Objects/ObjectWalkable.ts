@@ -1,7 +1,7 @@
+import { IAction } from "../../interfaces/IAction"
+import { IMovable } from "../../interfaces/IMoveable"
+import Actions from "../../types/Actions"
 import { GameObject } from "./GameObject"
-import Actions from "../types/Actions"
-import { IMovable } from "../interfaces/IMoveable"
-import { IAction } from "../interfaces/IAction"
 
 export class Walkable implements IMovable, IAction {
     private readonly UPDATE_ACTION: Actions = Actions._1_Walk

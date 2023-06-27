@@ -1,4 +1,4 @@
-import { IOverlapListener } from "../interfaces/IOverlapListener"
+import { IOverlapListener } from "../../interfaces/IOverlapListener"
 import { GameObject } from "./GameObject"
 
 export class OverlapListener implements IOverlapListener {
