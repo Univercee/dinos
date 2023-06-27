@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/react_app/static/css/main.70565e95.css",
-    "main.js": "/react_app/static/js/main.da8b26eb.js",
-    "static/media/background.png": "/react_app/static/media/background.68ca4034cb1afde37337.png",
-    "static/media/BlueCristall.png": "/react_app/static/media/BlueCristall.b3d9a906b06e4d55f6f1.png",
-    "static/media/GreenCristall.png": "/react_app/static/media/GreenCristall.e2cef687e7f459141a12.png",
-    "static/media/YellowCristall.png": "/react_app/static/media/YellowCristall.fbf90172e61faab06f31.png",
-    "static/media/RedCristall.png": "/react_app/static/media/RedCristall.05e20908fbe897e4ab31.png",
-    "index.html": "/react_app/index.html",
-    "main.70565e95.css.map": "/react_app/static/css/main.70565e95.css.map",
-    "main.da8b26eb.js.map": "/react_app/static/js/main.da8b26eb.js.map"
+    "main.css": "/dinos/static/css/main.70565e95.css",
+    "main.js": "/dinos/static/js/main.59ecec29.js",
+    "static/media/background.png": "/dinos/static/media/background.68ca4034cb1afde37337.png",
+    "static/media/BlueCristall.png": "/dinos/static/media/BlueCristall.b3d9a906b06e4d55f6f1.png",
+    "static/media/GreenCristall.png": "/dinos/static/media/GreenCristall.e2cef687e7f459141a12.png",
+    "static/media/YellowCristall.png": "/dinos/static/media/YellowCristall.fbf90172e61faab06f31.png",
+    "static/media/RedCristall.png": "/dinos/static/media/RedCristall.05e20908fbe897e4ab31.png",
+    "index.html": "/dinos/index.html",
+    "main.70565e95.css.map": "/dinos/static/css/main.70565e95.css.map",
+    "main.59ecec29.js.map": "/dinos/static/js/main.59ecec29.js.map"
   },
   "entrypoints": [
     "static/css/main.70565e95.css",
-    "static/js/main.da8b26eb.js"
+    "static/js/main.59ecec29.js"
   ]
 }
