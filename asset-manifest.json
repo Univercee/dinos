@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/dinos/static/css/main.70565e95.css",
-    "main.js": "/dinos/static/js/main.59ecec29.js",
+    "main.js": "/dinos/static/js/main.ba2ee833.js",
     "static/media/background.png": "/dinos/static/media/background.68ca4034cb1afde37337.png",
     "static/media/BlueCristall.png": "/dinos/static/media/BlueCristall.b3d9a906b06e4d55f6f1.png",
     "static/media/GreenCristall.png": "/dinos/static/media/GreenCristall.e2cef687e7f459141a12.png",
@@ -9,10 +9,10 @@
     "static/media/RedCristall.png": "/dinos/static/media/RedCristall.05e20908fbe897e4ab31.png",
     "index.html": "/dinos/index.html",
     "main.70565e95.css.map": "/dinos/static/css/main.70565e95.css.map",
-    "main.59ecec29.js.map": "/dinos/static/js/main.59ecec29.js.map"
+    "main.ba2ee833.js.map": "/dinos/static/js/main.ba2ee833.js.map"
   },
   "entrypoints": [
     "static/css/main.70565e95.css",
-    "static/js/main.59ecec29.js"
+    "static/js/main.ba2ee833.js"
   ]
 }
