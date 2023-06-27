@@ -1,7 +1,7 @@
 # \<Class\>GameObject
 
 ## Description
-All objects on the screen extends this class. To get access to action interfaces use methods: <br/>
+All objects on the screen extends this class. To get access to action interfaces using methods: <br/>
 <i>getStatic()</i> <br/>
 <i>getWalkable()</i> <br/>
 <i>getRunnable()</i> <br/>
