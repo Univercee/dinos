@@ -3,6 +3,6 @@ enum Classes{
     Cristall,
     Hud,
     GameObject,
-    LevelSwitcher
+    CristallLevelLoader
 }
 export default Classes

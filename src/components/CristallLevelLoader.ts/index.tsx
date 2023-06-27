@@ -1,15 +1,13 @@
 import { GameObject } from '../../core/Objects/GameObject'
 import { Hud } from '../HUD'
-import { blue_cristall_sprite, green_cristall_sprite, red_cristall_sprite, yellow_cristall_sprite } from '../../sprites'
-import Colors from '../../types/Colors'
+import { blue_cristall_sprite } from '../../sprites'
 import Keys from '../../types/Keys'
 import Classes from '../../types/Classes'
-import { Sprite } from '../../core/Objects/Sprite'
-import { Background } from '../Background'
+import { LevelLoared } from '../../core/logic/levelLoader'
 
-export class LevelSwitcher extends GameObject{
-    readonly classname: Classes = Classes.LevelSwitcher
-    private level: Function
+export class CristallLevelLoader extends GameObject{
+    readonly classname: Classes = Classes.CristallLevelLoader
+    private level_loader: LevelLoared
     private hud: GameObject
     constructor(level: Function){
         super(blue_cristall_sprite)
@@ -19,11 +17,10 @@ export class LevelSwitcher extends GameObject{
         this.hud.getStatic().setPosition([this.getStatic().getFrameWidth()/2-this.hud.getStatic().getFrameWidth()/2, 100])
         this.hud.getStatic().setVisibility(false)
         this.addChild(this.hud)
-        this.level = level
+        this.level_loader = new LevelLoared(level)
     }
     load(){
-        new Background().removeAllChilds()
-        this.level()
+        this.level_loader.load()
     }
     onBeginOverlap(o: GameObject): void {
         switch(o.getClassname()){

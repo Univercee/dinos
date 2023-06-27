@@ -5,10 +5,10 @@ import { Background } from '../components/Background';
 import Colors from '../types/Colors';
 import Keys from '../types/Keys';
 import level_1 from './level_1';
-import { LevelSwitcher } from '../components/LevelSwitcher';
+import { CristallLevelLoader } from '../components/CristallLevelLoader.ts';
 
 export default function(){
-    let level_switcher = new LevelSwitcher(level_1)
+    let level_switcher = new CristallLevelLoader(level_1)
     level_switcher.getStatic().setPosition([20, 7])
 
     let hud_a = new Hud(Keys.A)

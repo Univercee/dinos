@@ -7,7 +7,7 @@ import { input } from '../../core/logic/keyListener'
 import Keys from '../../types/Keys'
 import { Cristall } from '../Cristall'
 import { Sprite } from '../../core/Objects/Sprite'
-import { LevelSwitcher } from '../LevelSwitcher'
+import { CristallLevelLoader } from '../CristallLevelLoader.ts'
 
 export class Dino extends GameObject{
     protected classname = Classes.Dino
@@ -33,8 +33,8 @@ export class Dino extends GameObject{
                     case Classes.Cristall:
                         this.getStatic().setSprite(Dino.SPRITE_SETS.get((el as Cristall).getColor())!)
                         break
-                    case Classes.LevelSwitcher:
-                        (el as LevelSwitcher).load()
+                    case Classes.CristallLevelLoader:
+                        (el as CristallLevelLoader).load()
                         break
                 }
             })
