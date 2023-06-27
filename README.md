@@ -44,7 +44,7 @@ Action list: </br>
 
 ## Description
 Image with frame storyboard. Sprite image example: </br>
-![SpriteExample](https://github.com/Univercee/react_app/blob/master/src/sprites/BlueDino.png)
+![SpriteExample](https://github.com/Univercee/dinos/blob/master/src/sprites/BlueDino.png)
 
 ## Constructor
 <i>src</i>: string //image data string like 'data:image/jpeg;base64, LzlqLzRBQ... '; import src from './image.png' </br>
