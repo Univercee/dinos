@@ -1,4 +1,4 @@
-import { Sprite } from '../core/Sprite'
+
 import Actions from '../types/Actions'
 
 import background from './assets/background.png'
@@ -18,6 +18,7 @@ import blue_cristall from './assets/BlueCristall.png'
 import red_cristall from './assets/RedCristall.png'
 import green_cristall from './assets/GreenCristall.png'
 import yellow_cristall from './assets/YellowCristall.png'
+import { Sprite } from '../core/Objects/Sprite'
 
 export const red_dino_sprite: Sprite = new Sprite(
     red_dino,

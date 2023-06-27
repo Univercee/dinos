@@ -1,5 +1,6 @@
-import { ISprite } from "../interfaces/ISprite"
-import Actions from "../types/Actions"
+import { ISprite } from "../../interfaces/ISprite";
+import Actions from "../../types/Actions";
+
 var id = 0;
 export class Sprite implements ISprite{
     private id: number

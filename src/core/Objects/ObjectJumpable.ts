@@ -1,7 +1,7 @@
+import { IAction } from "../../interfaces/IAction"
+import { IJumpable } from "../../interfaces/IJumpable"
+import Actions from "../../types/Actions"
 import { GameObject } from "./GameObject"
-import Actions from "../types/Actions"
-import { IJumpable } from "../interfaces/IJumpable"
-import { IAction } from "../interfaces/IAction"
 
 export class Jumpable implements IJumpable, IAction {
     private readonly UPDATE_ACTION: Actions = Actions._3_Jump
