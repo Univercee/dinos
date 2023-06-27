@@ -1,5 +1,5 @@
-import ReactDOM from 'react-dom';
-import { Background } from './components/Background';
+import ReactDom from 'react-dom'
+import { Background } from './components/Background'
 import './levels/level_0'
 import './index.css';
 
@@ -8,7 +8,7 @@ import './index.css';
 const FPS = 8;
 function tick(){
   new Background().tick()
-  ReactDOM.render(
+  ReactDom.render(
     new Background().render(),
     document.getElementById('root') 
   );

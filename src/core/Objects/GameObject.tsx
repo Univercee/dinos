@@ -5,8 +5,7 @@ import Classes from "../../types/Classes"
 import { IAction } from "../../interfaces/IAction"
 import { IOverlapSubscriber } from "../../interfaces/IOverlapSubscriber"
 import { Static } from "./ObjectStatic"
-import { Walkable } from "./ObjectWalkable"
-import { Runnable } from "./ObjectRunnable"
+import { Moveable } from "./ObjectMoveable"
 import { Jumpable } from "./ObjectJumpable"
 import { OverlapListener } from "./OverlapListener"
 import { IStatic } from "../../interfaces/IStatic"
@@ -24,16 +23,16 @@ export class GameObject extends React.Component implements IOverlapSubscriber{
     private active_action: Set<Actions> = new Set()
     private last_action: Actions = Actions._0_Idle
     private static: Static
-    private walkable: Walkable
-    private runnable: Runnable
+    private walkable: Moveable
+    private runnable: Moveable
     private jumpable: Jumpable
     private overlap_listener: OverlapListener = new OverlapListener()
     constructor(sprite: Sprite, move_speed: number = 0, run_speed: number = 0, jump_duration: number = 0, jump_speed: number = 0){
         super({})
         this.id = id++
         this.static = new Static(sprite, [0, 0])
-        this.walkable = new Walkable(move_speed)
-        this.runnable = new Runnable(run_speed)
+        this.walkable = new Moveable(move_speed)
+        this.runnable = new Moveable(run_speed)
         this.jumpable = new Jumpable(jump_duration, jump_speed)
         this.abilities = [this.walkable, this.runnable, this.jumpable]
     }

@@ -3,7 +3,7 @@ import { IMovable } from "../../interfaces/IMoveable"
 import Actions from "../../types/Actions"
 import { GameObject } from "./GameObject"
 
-export class Walkable implements IMovable, IAction {
+export class Moveable implements IMovable, IAction {
     private readonly UPDATE_ACTION: Actions = Actions._1_Walk
     private speed: number 
     private direction: number = 0

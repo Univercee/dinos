@@ -1,6 +1,6 @@
 import React from "react";
 import { background_sprite } from "../../sprites";
-import { GameObject } from "../../core/Objects/GameObject";
+import { GameObject } from "../../core/Objects/GameObject"
 
 export class Background extends GameObject{
     private static instance: Background
