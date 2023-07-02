@@ -2,6 +2,7 @@ import React from "react";
 import { background_sprite } from "../../sprites";
 import { GameObject } from "../../core/Objects/GameObject"
 import Classes from "../../types/Classes";
+import { relative } from "path";
 
 export class Background extends GameObject{
     private static instance: Background
@@ -9,7 +10,7 @@ export class Background extends GameObject{
         if(!Background.instance){
             super(background_sprite)
             this.classname = Classes.Background
-            this.getStatic().setFrameWidth(100)
+            this.getStatic().setFrameWidth(window.innerWidth)
             Background.instance = this
         }
         else{
@@ -18,22 +19,22 @@ export class Background extends GameObject{
     }
     render(){
         let coords = this.getStatic().getSprite().getIndex() * 100
-        let childs   = this.getChilds().map(el => {
+        let childs = this.getChilds().map(el => {
             return el.render()
         })
         return <div 
         className="sprite" 
-        style={{visibility: this.getStatic().getVisibility() ? "visible" : "hidden", bottom: 0, left: 0, height: "100%", width: this.getStatic().getFrameWidth()+"%", overflow: "hidden", transform: "scaleX("+this.getStatic().getFlip()+")"}}
+        style={{visibility: this.getStatic().getVisibility() ? "visible" : "hidden", pointerEvents: "none", bottom: 0, left: 0, height: window.innerHeight, width: window.innerWidth, overflow: "hidden", transform: "scaleX("+this.getStatic().getFlip()+")"}}
         key={this.getId()}
         id={this.getId().toString()}
         >
         <img 
             src={this.getStatic().getSprite().getSrc()} 
             alt={this.constructor.name} 
-            style={{objectFit:"cover", objectPosition: "0 100%", margin: "0 0 0 -"+coords+"%", width: this.getStatic().getSprite().getLength() * 100+"%", height:"100%"}}
+            style={{width: this.getStatic().getSprite().getLength() * 100+"%", height:"100%"}}
         />
         {childs.length > 0 &&
-        <div className="childs">
+        <div className="childs" style={{position: "relative"}}>
             <React.Fragment>
             {childs}
             </React.Fragment>
@@ -44,7 +45,7 @@ export class Background extends GameObject{
     onEndOverlap(o: GameObject){
         let position = o.getStatic().getPosition()
         let width = o.getStatic().getFrameWidth()
-        let shift = position[0]>0 ? -width : 100
+        let shift = position[0]>0 ? -width : window.innerWidth
         o.getStatic().setPosition([shift, position[1]])
     }
 }
