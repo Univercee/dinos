@@ -1,12 +1,14 @@
 import React from "react";
 import { background_sprite } from "../../sprites";
 import { GameObject } from "../../core/Objects/GameObject"
+import Classes from "../../types/Classes";
 
 export class Background extends GameObject{
     private static instance: Background
     constructor(){
         if(!Background.instance){
             super(background_sprite)
+            this.classname = Classes.Background
             this.getStatic().setFrameWidth(100)
             Background.instance = this
         }

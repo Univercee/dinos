@@ -13,6 +13,7 @@ import { IMovable } from "../../interfaces/IMoveable"
 import { IJumpable } from "../../interfaces/IJumpable"
 import { IOverlapListener } from "../../interfaces/IOverlapListener"
 import { Runnable } from "./ObjectRunnable"
+import { Background } from "../../components/Background"
 
 var id = 0
 export class GameObject extends React.Component implements IOverlapSubscriber{

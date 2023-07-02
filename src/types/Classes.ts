@@ -1,4 +1,5 @@
 enum Classes{
+    Background,
     Dino,
     Cristall,
     Hud,
