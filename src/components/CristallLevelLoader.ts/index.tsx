@@ -12,8 +12,8 @@ export class CristallLevelLoader extends GameObject{
     constructor(level: Function){
         super(blue_cristall_sprite)
         this.hud = new Hud(Keys.E)
-        this.getStatic().setFrameWidth(3)
-        this.hud.getStatic().setFrameWidth(2.5)
+        this.getStatic().setFrameWidth(50)
+        this.hud.getStatic().setFrameWidth(30)
         this.hud.getStatic().setPosition([this.getStatic().getFrameWidth()/2-this.hud.getStatic().getFrameWidth()/2, 100])
         this.hud.getStatic().setVisibility(false)
         this.addChild(this.hud)

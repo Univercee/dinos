@@ -6,16 +6,16 @@ import { github_sprite } from '../sprites';
 
 
 export default function(){
-    let github = new GameObject(github_sprite)
-    github.getStatic().setPosition([15, 7])
-    github.getStatic().setFrameWidth(5)
+    // let github = new GameObject(github_sprite)
+    // github.getStatic().setPosition([15, 7])
+    // github.getStatic().setFrameWidth(5)
 
-    let dino = new Dino(Colors.Blue)
-    dino.getStatic().setPosition([5, 5.5])
-    dino.getStatic().setFrameWidth(5)
+    // let dino = new Dino(Colors.Blue)
+    // dino.getStatic().setPosition([5, 5.5])
+    // dino.getStatic().setFrameWidth(5)
 
-    new Background().addChild(github)
-    new Background().addChild(dino)
-    dino.addOverlapListener(new Background())
-    new Background().addOverlapListener(dino)
+    // new Background().addChild(github)
+    // new Background().addChild(dino)
+    // dino.addOverlapListener(new Background())
+    // new Background().addOverlapListener(dino)
 }

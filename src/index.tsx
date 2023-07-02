@@ -2,6 +2,7 @@ import ReactDom from 'react-dom'
 import { Background } from './components/Background'
 import level_0 from './levels/level_0'
 import './index.css';
+import './core/logic/mouseListener'
 
 // import reportWebVitals from './reportWebVitals';
 

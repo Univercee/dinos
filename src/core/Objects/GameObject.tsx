@@ -29,6 +29,7 @@ export class GameObject extends React.Component implements IOverlapSubscriber{
     private runnable: Runnable
     private jumpable: Jumpable
     private overlap_listener: OverlapListener = new OverlapListener()
+    private style: React.CSSProperties = {}
     constructor(sprite: Sprite, move_speed: number = 0, run_speed: number = 0, jump_duration: number = 0, jump_speed: number = 0){
         super({})
         this.id = id++
@@ -45,11 +46,11 @@ export class GameObject extends React.Component implements IOverlapSubscriber{
         })
         return <div
         className="sprite" 
-        style={{visibility: this.static.getVisibility() ? "visible" : "hidden", bottom: this.static.getPosition()[1]+"%", left: this.static.getPosition()[0]+"%", height: "max-content", width:"100%"}}
+        style={{visibility: this.static.getVisibility() ? "visible" : "hidden", bottom: this.static.getPosition()[1]+"px", left: this.static.getPosition()[0]+"px", height: "max-content", width:"100%"}}
         key={this.id}
         id={this.id.toString()}>
         <div 
-        style={{overflow:"hidden", width: this.static.getFrameWidth()+"%", transform: "scaleX("+this.static.getFlip()+")"}}
+        style={Object.assign({overflow:"hidden", width: this.static.getFrameWidth()+"px", transform: "scaleX("+this.static.getFlip()+")"}, this.style)}
         >
             <img 
                 src={this.static.getSprite().getSrc()} 
@@ -121,5 +122,14 @@ export class GameObject extends React.Component implements IOverlapSubscriber{
     removeAllChilds(){
         this.childs.forEach((el)=>{ el.parent = null })
         this.childs = []
+    }
+
+    select(){
+        this.style.background = "red"
+        this.style.cursor = "pointer"
+    }
+    unselect(){
+        this.style.background = ""
+        this.style.cursor = ""
     }
 }
