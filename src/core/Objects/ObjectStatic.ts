@@ -5,7 +5,7 @@ import Actions from "../../types/Actions"
 import { GameObject } from "./GameObject"
 
 export class Static implements IStatic, IAction {
-    private readonly UPDATE_ACTION: Actions = Actions._0_Idle
+    private readonly ACTION: Actions = Actions._0_Idle
     private sprite: ISprite
     private position: [number, number] = [0, 0]
     private visibility: boolean = true
@@ -35,8 +35,8 @@ export class Static implements IStatic, IAction {
     update(o: GameObject): void {
         this.sprite.tick()
     }
-    update_action(): Actions {
-        return this.UPDATE_ACTION
+    get_action(): Actions {
+        return this.ACTION
     }
     rollback(o: GameObject): void {}
 }

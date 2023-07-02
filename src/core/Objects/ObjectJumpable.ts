@@ -4,7 +4,7 @@ import Actions from "../../types/Actions"
 import { GameObject } from "./GameObject"
 
 export class Jumpable implements IJumpable, IAction {
-    private readonly UPDATE_ACTION: Actions = Actions._3_Jump
+    private readonly ACTION: Actions = Actions._3_Jump
     private duration: number
     private speed: number
     private time: number = 0
@@ -31,8 +31,8 @@ export class Jumpable implements IJumpable, IAction {
             this.time--
         }
     }
-    update_action(): Actions {
-        return this.UPDATE_ACTION
+    get_action(): Actions {
+        return this.ACTION
     }
     rollback(o: GameObject): void {}
 }

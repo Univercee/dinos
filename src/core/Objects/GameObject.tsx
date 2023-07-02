@@ -74,13 +74,13 @@ export class GameObject extends React.Component implements IOverlapSubscriber{
         this.childs.forEach(el => {el.tick()})
     }
     update(): void{
-        let abilities = this.abilities.filter((el)=>{return this.active_action.has(el.update_action())})
+        let abilities = this.abilities.filter((el)=>{return this.active_action.has(el.get_action())})
         abilities.push(this.static)
         abilities
-        .sort((a, b) => Object.values(Actions).indexOf(a.update_action()) - Object.values(Actions).indexOf(b.update_action()))
+        .sort((a, b) => Object.values(Actions).indexOf(a.get_action()) - Object.values(Actions).indexOf(b.get_action()))
         .forEach((el)=>{
             el.update(this)
-            this.last_action = el.update_action()
+            this.last_action = el.get_action()
         })     
     }
     
@@ -103,7 +103,7 @@ export class GameObject extends React.Component implements IOverlapSubscriber{
     getActions(): Set<Actions>{ return this.active_action }
     getLastAction(): Actions { return this.last_action }
     abilityByAction(action: Actions): IAction {
-        return this.abilities.filter((el)=>{return el.update_action() === action})[0]
+        return this.abilities.filter((el)=>{return el.get_action() === action})[0]
     }
 
     hasAction(action: Actions): boolean { return this.active_action.has(action) }

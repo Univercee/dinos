@@ -4,7 +4,7 @@ import Actions from "../../types/Actions"
 import { GameObject } from "./GameObject"
 
 export class Moveable implements IMovable, IAction {
-    private readonly UPDATE_ACTION: Actions = Actions._1_Walk
+    private readonly ACTION: Actions = Actions._1_Walk
     private speed: number 
     private direction: number = 0
     private prev_position: [number, number] = [0, 0]
@@ -23,8 +23,8 @@ export class Moveable implements IMovable, IAction {
         this.prev_position = position
         o.getStatic().setPosition([position[0]+this.speed*this.direction, position[1]])
     }
-    update_action(): Actions {
-        return this.UPDATE_ACTION
+    get_action(): Actions {
+        return this.ACTION
     }
     rollback(o: GameObject): void {
         o.getStatic().setPosition(this.prev_position)
