@@ -1,8 +1,8 @@
 import { GameObject } from "../core/Objects/GameObject"
-import Actions from "../types/Actions"
+import ActionName from "../types/ActionNames"
 
 export interface IAction{
-    get_action(): Actions
+    name(): ActionName
     update(o: GameObject): void
     rollback(o: GameObject): void
 }

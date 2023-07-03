@@ -1,10 +1,11 @@
 import { IAction } from "../../interfaces/IAction"
 import { IJumpable } from "../../interfaces/IJumpable"
-import Actions from "../../types/Actions"
+import ActionName from "../../types/ActionNames"
+import { Vector2d } from "../tools/Vector2d"
 import { GameObject } from "./GameObject"
 
 export class Jumpable implements IJumpable, IAction {
-    private readonly ACTION: Actions = Actions._3_Jump
+    private readonly ACTION: ActionName = ActionName._3_Jump
     private duration: number
     private speed: number
     private time: number = 0
@@ -13,9 +14,13 @@ export class Jumpable implements IJumpable, IAction {
         this.speed = speed
     }
     getDuration(): number { return this.duration }
+    getSpeed(): number {
+        return this.speed
+    }
     getTime(): number { return this.time }
 
     setDuration(d: number): void { this.duration = d }
+    setSpeed(s: number): void { this.speed = s }
 
     jump(): void {
         this.time = this.duration-1
@@ -27,11 +32,12 @@ export class Jumpable implements IJumpable, IAction {
         if(this.is_jump()){
             let position = o.getStatic().getPosition()
             let shift = this.speed * (this.is_jump()-this.duration/2)
-            o.getStatic().setPosition([position[0], position[1]+shift])
+            position.add(new Vector2d(0, shift))
+            o.getStatic().setPosition(position)
             this.time--
         }
     }
-    get_action(): Actions {
+    name(): ActionName {
         return this.ACTION
     }
     rollback(o: GameObject): void {}

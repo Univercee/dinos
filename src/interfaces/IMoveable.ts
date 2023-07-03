@@ -1,8 +1,9 @@
-export interface IMovable {
+import { Vector2d } from "../core/tools/Vector2d"
+
+export interface IMoveable {
     getSpeed(): number
     getDirection(): number
-    getPrevPosition(): [number, number]
-
+    getPrevPosition(): Vector2d
     setSpeed(s: number): void
     setDirection(d: number): void
 } 
