@@ -2,7 +2,7 @@ import React from "react";
 import { background_sprite } from "../../sprites";
 import { GameObject } from "../../core/Objects/GameObject"
 import Classes from "../../types/Classes";
-import { relative } from "path";
+import { Vector2d } from "../../core/tools/Vector2d";
 
 export class Background extends GameObject{
     private static instance: Background
@@ -10,7 +10,8 @@ export class Background extends GameObject{
         if(!Background.instance){
             super(background_sprite)
             this.classname = Classes.Background
-            this.getStatic().setFrameWidth(window.innerWidth)
+            this.getStatic().setWidth(window.innerWidth)
+            this.getStatic().setHeight(window.innerHeight)
             Background.instance = this
         }
         else{
@@ -18,7 +19,6 @@ export class Background extends GameObject{
         }
     }
     render(){
-        let coords = this.getStatic().getSprite().getIndex() * 100
         let childs = this.getChilds().map(el => {
             return el.render()
         })
@@ -44,8 +44,8 @@ export class Background extends GameObject{
     }
     onEndOverlap(o: GameObject){
         let position = o.getStatic().getPosition()
-        let width = o.getStatic().getFrameWidth()
-        let shift = position[0]>0 ? -width : window.innerWidth
-        o.getStatic().setPosition([shift, position[1]])
+        let width = o.getStatic().getWidth()
+        let shift = position.x>0 ? -width : window.innerWidth
+        o.getStatic().setPosition(new Vector2d(shift, position.y))
     }
 }
