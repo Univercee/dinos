@@ -1,4 +1,4 @@
-export interface IMouseListener {
+export interface IMouseSubscriber {
     onMouseMove(e: MouseEvent): void
     onMouseDown(e: MouseEvent): void
     onMouseUp(e: MouseEvent): void

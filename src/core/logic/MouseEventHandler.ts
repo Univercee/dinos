@@ -1,8 +1,9 @@
+import { IMouseSubscriber } from "../../interfaces/IMouseSubscriber";
 import { GameObject } from "../Objects/GameObject";
 import { NoSprite } from "../Objects/NoSprite";
 import { Vector2d } from "../tools/Vector2d";
 
-export class MouseEventHandler extends GameObject{
+export class MouseEventHandler extends GameObject implements IMouseSubscriber{
     private static instance: MouseEventHandler
     private target: GameObject|null
     private mouse_down: boolean
@@ -48,6 +49,17 @@ export class MouseEventHandler extends GameObject{
     onMouseUp(event: MouseEvent){
         this.mouse_down = false
         this.event_start_delta = [0, 0]
+    }
+    onMouseEnter(e: MouseEvent): void {
+        
+    }
+    onMouseLeave(e: MouseEvent): void {
+        
+    }
+    onMouseOut(e: MouseEvent): void {
+        
+    }
+    onMouseOver(e: MouseEvent): void {
         
     }
 }
