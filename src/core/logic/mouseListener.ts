@@ -1,5 +1,6 @@
 import { GameObject } from "../Objects/GameObject";
 import { NoSprite } from "../Objects/NoSprite";
+import { Vector2d } from "../tools/Vector2d";
 
 export class MouseEventHandler extends GameObject{
     private static instance: MouseEventHandler
@@ -9,7 +10,8 @@ export class MouseEventHandler extends GameObject{
     constructor(){
         if(!MouseEventHandler.instance){
             super(new NoSprite())
-            this.getStatic().setFrameWidth(0)
+            this.getStatic().setWidth(0)
+            this.getStatic().setHeight(0)
             this.getStatic().setVisibility(false)
             MouseEventHandler.instance = this
             this.target = null
@@ -31,16 +33,16 @@ export class MouseEventHandler extends GameObject{
         o.unselect()
     }
     onMouseMove(event: MouseEvent){
-        this.getStatic().setPosition([event.x, window.innerHeight-event.y])
+        this.getStatic().setPosition(new Vector2d(event.x, window.innerHeight-event.y))
         if(this.mouse_down && this.target){
-            let delta: [number, number] = [this.getStatic().getPosition()[0]+this.event_start_delta[0], this.getStatic().getPosition()[1]+this.event_start_delta[1]]
+            let delta: Vector2d = new Vector2d(this.getStatic().getPosition().x+this.event_start_delta[0], this.getStatic().getPosition().y+this.event_start_delta[1])
             this.target.getStatic().setPosition(delta)
         }
     }
     onMouseDown(event: MouseEvent){
         this.mouse_down = true
         if(this.target){
-            this.event_start_delta = [this.target.getStatic().getPosition()[0] - event.x, this.target.getStatic().getPosition()[1] - (window.innerHeight - event.y)]
+            this.event_start_delta = [this.target.getStatic().getPosition().x - event.x, this.target.getStatic().getPosition().y - (window.innerHeight - event.y)]
         }
     }
     onMouseUp(event: MouseEvent){
