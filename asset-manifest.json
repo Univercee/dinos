@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/dinos/static/css/main.70565e95.css",
-    "main.js": "/dinos/static/js/main.15f2b597.js",
-    "static/media/background.png": "/dinos/static/media/background.68ca4034cb1afde37337.png",
-    "static/media/BlueCristall.png": "/dinos/static/media/BlueCristall.b3d9a906b06e4d55f6f1.png",
-    "static/media/GreenCristall.png": "/dinos/static/media/GreenCristall.e2cef687e7f459141a12.png",
-    "static/media/YellowCristall.png": "/dinos/static/media/YellowCristall.fbf90172e61faab06f31.png",
-    "static/media/RedCristall.png": "/dinos/static/media/RedCristall.05e20908fbe897e4ab31.png",
-    "index.html": "/dinos/index.html",
-    "main.70565e95.css.map": "/dinos/static/css/main.70565e95.css.map",
-    "main.15f2b597.js.map": "/dinos/static/js/main.15f2b597.js.map"
+    "main.css": "/game_engine/static/css/main.70565e95.css",
+    "main.js": "/game_engine/static/js/main.1300014c.js",
+    "static/media/background.png": "/game_engine/static/media/background.68ca4034cb1afde37337.png",
+    "static/media/BlueCristall.png": "/game_engine/static/media/BlueCristall.b3d9a906b06e4d55f6f1.png",
+    "static/media/GreenCristall.png": "/game_engine/static/media/GreenCristall.e2cef687e7f459141a12.png",
+    "static/media/YellowCristall.png": "/game_engine/static/media/YellowCristall.fbf90172e61faab06f31.png",
+    "static/media/RedCristall.png": "/game_engine/static/media/RedCristall.05e20908fbe897e4ab31.png",
+    "index.html": "/game_engine/index.html",
+    "main.70565e95.css.map": "/game_engine/static/css/main.70565e95.css.map",
+    "main.1300014c.js.map": "/game_engine/static/js/main.1300014c.js.map"
   },
   "entrypoints": [
     "static/css/main.70565e95.css",
-    "static/js/main.15f2b597.js"
+    "static/js/main.1300014c.js"
   ]
 }
