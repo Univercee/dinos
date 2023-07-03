@@ -4,6 +4,7 @@ import { blue_cristall_sprite } from '../../sprites'
 import Keys from '../../types/Keys'
 import Classes from '../../types/Classes'
 import { LevelLoared } from '../../core/logic/levelLoader'
+import { Vector2d } from '../../core/tools/Vector2d'
 
 export class CristallLevelLoader extends GameObject{
     readonly classname: Classes = Classes.CristallLevelLoader
@@ -12,9 +13,11 @@ export class CristallLevelLoader extends GameObject{
     constructor(level: Function){
         super(blue_cristall_sprite)
         this.hud = new Hud(Keys.E)
-        this.getStatic().setFrameWidth(50)
-        this.hud.getStatic().setFrameWidth(30)
-        this.hud.getStatic().setPosition([this.getStatic().getFrameWidth()/2-this.hud.getStatic().getFrameWidth()/2, 100])
+        this.getStatic().setWidth(50)
+        this.getStatic().setHeight(50)
+        this.hud.getStatic().setWidth(30)
+        this.hud.getStatic().setHeight(30)
+        this.hud.getStatic().setPosition(new Vector2d(this.getStatic().getWidth()/2-this.hud.getStatic().getWidth()/2, 100))
         this.hud.getStatic().setVisibility(false)
         this.addChild(this.hud)
         this.level_loader = new LevelLoared(level)

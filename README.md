@@ -34,10 +34,10 @@ All screen objects must be childs of the Backgroud
 <i>jump_speed</i>: number = 0
 </br></br></br>
 
-# \<Enum\>Actions
+# \<Enum\>ActionName
 
 ## Description
-All actions <i>GameObject</i> can do </br>
+All ActionName <i>GameObject</i> can do </br>
 Action list: </br>
 <i>_0_Idle</i> </br>
 <i>_1_Walk</i> </br>
@@ -53,7 +53,7 @@ Image with frame storyboard. Sprite image example: </br>
 
 ## Constructor
 <i>src</i>: string //image data string like 'data:image/jpeg;base64, LzlqLzRBQ... '; import src from './image.png' </br>
-<i>breakpoints</i>: Map<Actions, [start_index: number, end_index: number]> //image actions slises </br>
+<i>breakpoints</i>: Map<ActionName, [start_index: number, end_index: number]> //image ActionName slises </br>
 <i>length</i>: number //number of the all frames on the image
 </br></br></br>
 
