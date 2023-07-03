@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/game_engine/static/css/main.70565e95.css",
-    "main.js": "/game_engine/static/js/main.1300014c.js",
+    "main.js": "/game_engine/static/js/main.86442c11.js",
     "static/media/background.png": "/game_engine/static/media/background.68ca4034cb1afde37337.png",
     "static/media/BlueCristall.png": "/game_engine/static/media/BlueCristall.b3d9a906b06e4d55f6f1.png",
     "static/media/GreenCristall.png": "/game_engine/static/media/GreenCristall.e2cef687e7f459141a12.png",
@@ -9,10 +9,10 @@
     "static/media/RedCristall.png": "/game_engine/static/media/RedCristall.05e20908fbe897e4ab31.png",
     "index.html": "/game_engine/index.html",
     "main.70565e95.css.map": "/game_engine/static/css/main.70565e95.css.map",
-    "main.1300014c.js.map": "/game_engine/static/js/main.1300014c.js.map"
+    "main.86442c11.js.map": "/game_engine/static/js/main.86442c11.js.map"
   },
   "entrypoints": [
     "static/css/main.70565e95.css",
-    "static/js/main.1300014c.js"
+    "static/js/main.86442c11.js"
   ]
 }
