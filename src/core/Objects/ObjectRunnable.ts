@@ -1,19 +1,20 @@
 import { IAction } from "../../interfaces/IAction"
-import { IMovable } from "../../interfaces/IMoveable"
-import Actions from "../../types/Actions"
+import { IMoveable } from "../../interfaces/IMoveable"
+import ActionName from "../../types/ActionNames"
+import { Vector2d } from "../tools/Vector2d"
 import { GameObject } from "./GameObject"
 
-export class Runnable implements IMovable, IAction {
-    private readonly ACTION: Actions = Actions._2_Run
+export class Runnable implements IMoveable, IAction {
+    private readonly ACTION: ActionName = ActionName._2_Run
     private speed: number 
-    private direction: number = 0
-    private prev_position: [number, number] = [0, 0]
+    private direction: number = 1
+    private prev_position: Vector2d = new Vector2d()
     constructor(speed: number){
         this.speed = speed
     }
     getSpeed(): number { return this.speed }
     getDirection(): number { return this.direction }
-    getPrevPosition(): [number, number] { return this.prev_position }
+    getPrevPosition(): Vector2d { return this.prev_position }
 
     setSpeed(s: number): void { this.speed = s }
     setDirection(d: number): void { this.direction = d }
@@ -21,9 +22,11 @@ export class Runnable implements IMovable, IAction {
     update(o: GameObject): void {
         let position = o.getStatic().getPosition()
         this.prev_position = position
-        o.getStatic().setPosition([position[0]+this.speed*this.direction, position[1]])
+        position.add(new Vector2d(this.speed*this.direction, 0))
+        
+        o.getStatic().setPosition(position)
     }
-    get_action(): Actions {
+    name(): ActionName {
         return this.ACTION
     }
     rollback(o: GameObject): void {

@@ -1,16 +1,16 @@
-import Actions from "../types/Actions";
+import ActionName from "../types/ActionNames";
 export interface ISprite
 {
     tick(): void
 
     getId(): number
     getSrc(): string
-    getAction(): Actions
+    getAction(): ActionName
     getLength(): number
-    getBreakpoints(): Map<Actions, [number, number]>
+    getBreakpoints(): Map<ActionName, [number, number]>
     getIndex(): number
 
-    setAction(action: Actions): void   
+    setAction(action: ActionName): void   
 }
 
 
